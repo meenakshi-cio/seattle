@@ -24,8 +24,6 @@ jobs:
       - name: Run scraper
         env:
           CIO_APP_API_KEY: ${{ secrets.CIO_APP_API_KEY }}
-          CIO_FROM_EMAIL: ${{ secrets.CIO_FROM_EMAIL }}
-          NOTIFY_EMAIL: s.meenaksh@gmail.com
           CI: "true"
         run: python scraper.py
 

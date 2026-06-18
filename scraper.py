@@ -27,51 +27,45 @@ from bs4 import BeautifulSoup
 # Customer.io transactional email notification
 # ---------------------------------------------------------------------------
 
-CIO_API_KEY    = os.environ.get("CIO_APP_API_KEY", "")
-NOTIFY_EMAIL   = os.environ.get("NOTIFY_EMAIL", "")
-CIO_FROM_EMAIL = os.environ.get("CIO_FROM_EMAIL", "")
-CIO_SEND_URL   = "https://api.customer.io/v1/send/email"
+CIO_API_KEY   = os.environ.get("CIO_APP_API_KEY", "")
+NOTIFY_PHONE  = "+19703339757"
+CIO_SEND_URL  = "https://api.customer.io/v1/send/sms"
+CIO_MSG_ID    = 2
 
 
 def notify_new_listings(new_listings: list) -> None:
-    if not CIO_API_KEY or not NOTIFY_EMAIL or not new_listings:
+    if not CIO_API_KEY or not new_listings:
         return
 
-    lines = []
     for l in new_listings:
-        lines.append(
-            f"• {l['beds']}BR in {l['neighborhood']} — {l['rent']}\n"
-            f"  {l['source']}\n"
-            f"  {l['address']}\n"
-            f"  {l['url']}\n"
-        )
-    body = "\n".join(lines)
-
-    count = len(new_listings)
-    payload = {
-        "to": NOTIFY_EMAIL,
-        "subject": f"{count} new Seattle rental{'s' if count > 1 else ''} just listed",
-        "body": body,
-        "from": CIO_FROM_EMAIL,
-        "identifiers": {"email": NOTIFY_EMAIL},
-    }
-
-    try:
-        resp = requests.post(
-            CIO_SEND_URL,
-            json=payload,
-            headers={
-                "Authorization": f"Bearer {CIO_API_KEY}",
-                "Content-Type": "application/json",
+        payload = {
+            "transactional_message_id": CIO_MSG_ID,
+            "to": NOTIFY_PHONE,
+            "identifiers": {"phone": NOTIFY_PHONE},
+            "message_data": {
+                "count": 1,
+                "neighborhood": l["neighborhood"],
+                "rent": l["rent"],
+                "source": l["source"],
+                "url": l["url"],
             },
-            timeout=10,
-        )
-        if resp.ok:
-            print(f"  [notify] Sent Customer.io email for {count} new listing(s).")
-        else:
-            print(f"  [notify] Customer.io error {resp.status_code}: {resp.text}")
-    except Exception as e:
-        print(f"  [notify] Failed to send notification: {e}")
+        }
+        try:
+            resp = requests.post(
+                CIO_SEND_URL,
+                json=payload,
+                headers={
+                    "Authorization": f"Bearer {CIO_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                timeout=10,
+            )
+            if resp.ok:
+                print(f"  [notify] SMS sent for {l['neighborhood']} listing.")
+            else:
+                print(f"  [notify] Customer.io error {resp.status_code}: {resp.text}")
+        except Exception as e:
+            print(f"  [notify] Failed to send SMS: {e}")
 
 # ---------------------------------------------------------------------------
 # Configuration
