@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+scraper.log
+scraper.err
+.DS_Store
