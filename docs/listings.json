@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T23:53:07.590061+00:00",
+  "updated": "2026-06-18T23:57:43.855821+00:00",
   "listings": [
     {
       "source": "Walls Property Management",
@@ -130,8 +130,8 @@
       "pets": "allowed",
       "url": "https://wallspropmgmt.appfolio.com/listings/detail/2388c4c2-a1e4-4835-8cef-20c463ea482e",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6711414,
-      "lng": -122.3899968
+      "lat": 47.6711394,
+      "lng": -122.3899988
     },
     {
       "source": "Walls Property Management",
@@ -358,8 +358,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704334,
-      "lng": -122.40355
+      "lat": 47.6704783,
+      "lng": -122.405115
     }
   ]
 }
