@@ -24,6 +24,56 @@ import requests
 from bs4 import BeautifulSoup
 
 # ---------------------------------------------------------------------------
+# Customer.io transactional email notification
+# ---------------------------------------------------------------------------
+
+CIO_API_KEY    = os.environ.get("CIO_APP_API_KEY", "")
+NOTIFY_EMAIL   = os.environ.get("NOTIFY_EMAIL", "")
+CIO_FROM_EMAIL = os.environ.get("CIO_FROM_EMAIL", "")
+CIO_SEND_URL   = "https://api.customer.io/v1/send/email"
+
+
+def notify_new_listings(new_listings: list) -> None:
+    if not CIO_API_KEY or not NOTIFY_EMAIL or not new_listings:
+        return
+
+    lines = []
+    for l in new_listings:
+        lines.append(
+            f"• {l['beds']}BR in {l['neighborhood']} — {l['rent']}\n"
+            f"  {l['source']}\n"
+            f"  {l['address']}\n"
+            f"  {l['url']}\n"
+        )
+    body = "\n".join(lines)
+
+    count = len(new_listings)
+    payload = {
+        "to": NOTIFY_EMAIL,
+        "subject": f"{count} new Seattle rental{'s' if count > 1 else ''} just listed",
+        "body": body,
+        "from": CIO_FROM_EMAIL,
+        "identifiers": {"email": NOTIFY_EMAIL},
+    }
+
+    try:
+        resp = requests.post(
+            CIO_SEND_URL,
+            json=payload,
+            headers={
+                "Authorization": f"Bearer {CIO_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            timeout=10,
+        )
+        if resp.ok:
+            print(f"  [notify] Sent Customer.io email for {count} new listing(s).")
+        else:
+            print(f"  [notify] Customer.io error {resp.status_code}: {resp.text}")
+    except Exception as e:
+        print(f"  [notify] Failed to send notification: {e}")
+
+# ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
 
@@ -39,9 +89,20 @@ TARGET_NEIGHBORHOODS = {
     "green lake",
 }
 
-REPO_ROOT   = Path(__file__).parent
-SEEN_FILE   = REPO_ROOT / "seen_listings.json"
+REPO_ROOT    = Path(__file__).parent
+SEEN_FILE    = REPO_ROOT / "seen_listings.json"
+GEOCACHE_FILE = REPO_ROOT / "geocode_cache.json"
 LISTINGS_OUT = REPO_ROOT / "docs" / "listings.json"
+
+# Fallback centroids for each neighborhood (lat, lng)
+NEIGHBORHOOD_CENTROIDS = {
+    "Ballard":       (47.6677, -122.3830),
+    "Queen Anne":    (47.6374, -122.3572),
+    "Fremont":       (47.6516, -122.3499),
+    "Phinney Ridge": (47.6670, -122.3570),
+    "Wallingford":   (47.6612, -122.3340),
+    "Green Lake":    (47.6799, -122.3317),
+}
 
 HEADERS = {
     "User-Agent": (
@@ -92,6 +153,93 @@ def load_seen() -> dict:
 
 def save_seen(seen: dict) -> None:
     SEEN_FILE.write_text(json.dumps(seen, indent=2, sort_keys=True))
+
+
+# ---------------------------------------------------------------------------
+# Geocoding — Nominatim with a local cache
+# ---------------------------------------------------------------------------
+
+def load_geocache() -> dict:
+    if GEOCACHE_FILE.exists():
+        return json.loads(GEOCACHE_FILE.read_text())
+    return {}
+
+
+def save_geocache(cache: dict) -> None:
+    GEOCACHE_FILE.write_text(json.dumps(cache, indent=2, sort_keys=True))
+
+
+def _strip_unit(address: str) -> str:
+    """Remove apartment/unit suffixes that confuse geocoders.
+
+    Handles formats like:
+      "7522 24th Ave NW - 2"   → "7522 24th Ave NW"
+      "1819 NW Central Place 2-202" → "1819 NW Central Place"
+      "655 Crockett St , #A308" → "655 Crockett St"
+      "2114 5th Ave W, Unit C"  → "2114 5th Ave W"
+    """
+    # Remove trailing " - <unit>" (AppFolio style)
+    addr = re.sub(r'\s*-\s*[\w/]+\s*$', '', address)
+    # Remove " #..." or ", #..."
+    addr = re.sub(r',?\s*#\S+', '', addr)
+    # Remove ", Unit ..." or ", Apt ..."
+    addr = re.sub(r',?\s*(unit|apt|suite|ste|apartment)\s+\S+', '', addr, flags=re.I)
+    # Remove trailing commas/spaces
+    return addr.strip().strip(',').strip()
+
+
+def _street_only(address: str) -> str:
+    """Extract just the street (no unit, no city/state/zip) for Nominatim."""
+    # Split on comma first — everything before the first comma is the street+unit
+    street = address.split(",")[0].strip()
+    # Strip "N-NNN" apartment codes BEFORE _strip_unit so it doesn't consume only the dash part
+    street = re.sub(r'\s+\d+-\d+\s*$', '', street).strip()
+    # Strip other unit suffixes (#, Apt, Unit, etc.) and trailing " - N"
+    street = _strip_unit(street)
+    # Collapse any double spaces left behind
+    street = re.sub(r'\s{2,}', ' ', street).strip()
+    return street
+
+
+def geocode(address: str, neighborhood: str, cache: dict) -> tuple:
+    """Return (lat, lng) for an address, using cache then Nominatim.
+
+    Uses Nominatim's structured search (street + city) to avoid the
+    double-city-name problem that trips up free-text queries.
+    """
+    if address in cache:
+        cached = tuple(cache[address])
+        if cached not in NEIGHBORHOOD_CENTROIDS.values():
+            return cached
+
+    street = _street_only(address)
+    try:
+        resp = requests.get(
+            "https://nominatim.openstreetmap.org/search",
+            params={
+                "street":  street,
+                "city":    "Seattle",
+                "state":   "WA",
+                "country": "US",
+                "format":  "json",
+                "limit":   1,
+            },
+            headers={"User-Agent": "seattle-rentals-monitor/1.0 (personal use)"},
+            timeout=10,
+        )
+        if resp.status_code == 200 and resp.text.strip():
+            results = resp.json()
+            if results:
+                coords = (float(results[0]["lat"]), float(results[0]["lon"]))
+                cache[address] = list(coords)
+                time.sleep(1.1)
+                return coords
+        time.sleep(1.1)
+    except Exception:
+        pass
+
+    fallback = NEIGHBORHOOD_CENTROIDS.get(neighborhood, (47.6062, -122.3321))
+    return fallback
 
 
 # ---------------------------------------------------------------------------
@@ -171,12 +319,22 @@ def scrape_appfolio(source_name: str, base_url: str) -> list:
         rent_el = item.select_one(".js-listing-blurb-rent")
         rent    = rent_el.get_text(strip=True) if rent_el else ""
 
+        pet_el   = item.select_one(".js-listing-pet-policy")
+        pet_text = pet_el.get_text(strip=True).lower() if pet_el else ""
+        if "not allowed" in pet_text:
+            pets = "none"
+        elif pet_text and "allowed" in pet_text:
+            pets = "allowed"
+        else:
+            pets = "unknown"
+
         results.append({
             "source":       source_name,
             "beds":         beds,
             "neighborhood": hood,
             "address":      addr_el.get_text(strip=True) if addr_el else "",
             "rent":         rent,
+            "pets":         pets,
             "url":          url,
         })
 
@@ -259,12 +417,22 @@ def scrape_propertyware(source_name: str, customer_id: str,
         rent = (f"${rent_val:,.0f}" if isinstance(rent_val, (int, float)) and rent_val
                 else str(rent_val))
 
+        # Propertyware pet fields
+        pet_raw = str(item.get("petPolicy") or item.get("petsAllowed") or "").lower()
+        if pet_raw in ("false", "no", "not allowed", "none"):
+            pets = "none"
+        elif pet_raw in ("true", "yes", "allowed"):
+            pets = "allowed"
+        else:
+            pets = "unknown"
+
         results.append({
             "source":       source_name,
             "beds":         beds,
             "neighborhood": hood,
             "address":      addr,
             "rent":         rent,
+            "pets":         pets,
             "url":          url,
         })
 
@@ -284,7 +452,9 @@ def write_listings_json(listings_with_meta: list, updated: str) -> None:
 
 
 def git_push(new_count: int) -> None:
-    """Commit docs/listings.json and push. Silently skips if not a git repo."""
+    """Commit docs/listings.json and push. Skips in CI (Actions handles it)."""
+    if os.environ.get("CI"):
+        return
     try:
         result = subprocess.run(
             ["git", "rev-parse", "--is-inside-work-tree"],
@@ -324,7 +494,8 @@ def main() -> None:
     print(f"  Seattle Rental Monitor — {now_str}")
     print(f"{'='*60}")
 
-    seen = load_seen()
+    seen     = load_seen()
+    geocache = load_geocache()
     print(f"  Previously seen listings: {len(seen)}")
 
     # ── Scrape all sites ──────────────────────────────────────────────────
@@ -350,20 +521,30 @@ def main() -> None:
             print(f"    → ERROR: {e}")
         time.sleep(1.5)
 
-    # ── Merge with seen timestamps ────────────────────────────────────────
+    # ── Merge with seen timestamps + geocode ─────────────────────────────
     new_count = 0
     listings_with_meta = []
 
+    print(f"\n  Geocoding {len(all_found)} listing(s)…")
     for listing in all_found:
         lid = listing_id(listing)
         if lid not in seen:
             seen[lid] = now_iso
             new_count += 1
-        listings_with_meta.append({**listing, "first_seen": seen[lid]})
+        lat, lng = geocode(listing["address"], listing["neighborhood"], geocache)
+        listings_with_meta.append({
+            **listing,
+            "first_seen": seen[lid],
+            "lat": lat,
+            "lng": lng,
+        })
 
     save_seen(seen)
+    save_geocache(geocache)
 
-    # ── Write JSON + push ─────────────────────────────────────────────────
+    # ── Notify + write JSON + push ────────────────────────────────────────
+    new_listings = [l for l in listings_with_meta if l["first_seen"] == now_iso]
+    notify_new_listings(new_listings)
     write_listings_json(listings_with_meta, now_iso)
     git_push(new_count)
 
