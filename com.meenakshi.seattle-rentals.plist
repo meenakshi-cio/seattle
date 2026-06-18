@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.meenakshi.seattle-rentals</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/meenakshisharma/seattle-rentals/venv/bin/python3</string>
+        <string>/Users/meenakshisharma/seattle-rentals/scraper.py</string>
+    </array>
+
+    <!-- Run every 3 hours (10800 seconds) -->
+    <key>StartInterval</key>
+    <integer>10800</integer>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <!-- PATH must include /usr/bin so git is available for the push step -->
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin</string>
+        <key>HOME</key>
+        <string>/Users/meenakshisharma</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/meenakshisharma/seattle-rentals/scraper.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/meenakshisharma/seattle-rentals/scraper.err</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
