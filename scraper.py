@@ -40,41 +40,38 @@ def notify_new_listings(new_listings: list) -> None:
     if not CIO_API_KEY or not new_listings:
         return
 
+    headers = {
+        "Authorization": f"Bearer {CIO_API_KEY}",
+        "Content-Type": "application/json",
+    }
+
     for l in new_listings:
-        # Update profile attributes first so template variables resolve
-        profile_payload = {
-            "attributes": {
-                "neighborhood": l["neighborhood"],
-                "rent": l["rent"],
-                "source": l["source"],
-                "url": l["url"],
-            }
-        }
         try:
-            requests.put(
-                f"https://track.customer.io/api/v1/customers/{NOTIFY_EMAIL}",
-                json={"attributes": profile_payload["attributes"]},
-                auth=(CIO_SITE_ID, CIO_TRACK_API_KEY),
+            r = requests.put(
+                "https://api.customer.io/v1/customers/e6f10900db01dc01",
+                json={
+                    "neighborhood": l["neighborhood"],
+                    "rent": l["rent"],
+                    "source": l["source"],
+                    "url": l["url"],
+                },
+                headers=headers,
                 timeout=10,
             )
-            print(f"  [notify] Profile update status: {r.status_code} {r.text[:100]}")
+            print(f"  [notify] Profile update: {r.status_code} {r.text[:100]}")
             time.sleep(0.5)
         except Exception as e:
             print(f"  [notify] Failed to update profile: {e}")
 
-        payload = {
-            "transactional_message_id": CIO_MSG_ID,
-            "to": NOTIFY_PHONE,
-            "identifiers": {"id": "219"},
-        }
         try:
             resp = requests.post(
                 CIO_SEND_URL,
-                json=payload,
-                headers={
-                    "Authorization": f"Bearer {CIO_API_KEY}",
-                    "Content-Type": "application/json",
+                json={
+                    "transactional_message_id": CIO_MSG_ID,
+                    "to": NOTIFY_PHONE,
+                    "identifiers": {"id": "219"},
                 },
+                headers=headers,
                 timeout=10,
             )
             if resp.ok:
