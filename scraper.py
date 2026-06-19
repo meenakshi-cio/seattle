@@ -41,9 +41,8 @@ def notify_new_listings(new_listings: list) -> None:
         payload = {
             "transactional_message_id": CIO_MSG_ID,
             "to": NOTIFY_PHONE,
-            "identifiers": {"phone": NOTIFY_PHONE},
+            "identifiers": {"id": "meenakshi"},
             "message_data": {
-                "count": 1,
                 "neighborhood": l["neighborhood"],
                 "rent": l["rent"],
                 "source": l["source"],
