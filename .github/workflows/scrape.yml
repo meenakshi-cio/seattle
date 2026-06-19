@@ -1,9 +1,7 @@
 name: Scrape listings
 
 on:
-  schedule:
-    - cron: "*/15 * * * *"   # every 15 minutes
-  workflow_dispatch:           # manual trigger
+  workflow_dispatch:           # manual only until SMS is verified
 
 jobs:
   scrape:
