@@ -527,9 +527,13 @@
           <span class="popup-rent">${l.rent || ''}</span>
         </div>
         <div class="popup-source">${l.source}</div>
-        <a class="popup-link" href="${l.url}" target="_blank" rel="noopener" onclick="markSeenByIndex(${i})">View listing →</a>
+        <a class="popup-link" href="${l.url}" target="_blank" rel="noopener" data-seen-idx="${i}">View listing →</a>
       `, { maxWidth: 240 });
 
+      marker.on('popupopen', () => {
+        const link = marker.getPopup().getElement().querySelector('.popup-link');
+        if (link) link.addEventListener('click', () => markSeenByIndex(i), { once: true });
+      });
       marker.on('click', () => scrollToCard(i));
       markerLayer.addLayer(marker);
     });
@@ -604,8 +608,8 @@
     const l = listings[i];
     if (!l || isSeen(l)) return;
     markSeen(l);
-    // Update marker immediately
-    redrawMarkers(listings);
+    // Defer redraw so the popup link navigates before the marker is destroyed
+    setTimeout(() => redrawMarkers(listings), 0);
     // Update card if visible
     const card = document.getElementById(`card-${i}`);
     if (card) {
