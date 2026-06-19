@@ -407,6 +407,8 @@
     <span class="chip active" data-beds="all">All</span>
     <span class="chip" data-beds="2">2 BR</span>
     <span class="chip" data-beds="3">3 BR</span>
+    <span class="divider"></span>
+    <span class="chip" id="chip-new" data-new="true">New today</span>
   </div>
 
   <div style="position:relative; overflow:hidden; min-height:0;">
@@ -444,6 +446,7 @@
   let allListings  = [];
   let activeHood   = 'all';
   let activeBeds   = 'all';
+  let activeNew    = false;
   let markerLayer  = L.layerGroup().addTo(map);
 
   // ── Seen listings (localStorage cache + Neon backend) ───────────────────
@@ -522,7 +525,8 @@
     return allListings.filter(l => {
       const hoodOk = activeHood === 'all' || l.neighborhood === activeHood;
       const bedsOk = activeBeds === 'all' || l.beds === parseInt(activeBeds);
-      return hoodOk && bedsOk && l.lat && l.lng;
+      const newOk  = !activeNew || isNew(l.first_seen);
+      return hoodOk && bedsOk && newOk && l.lat && l.lng;
     });
   }
 
@@ -735,6 +739,12 @@
       activeBeds = chip.dataset.beds;
       render();
     });
+  });
+
+  document.getElementById('chip-new').addEventListener('click', () => {
+    activeNew = !activeNew;
+    document.getElementById('chip-new').classList.toggle('active', activeNew);
+    render();
   });
 
   // ── Countdown ──────────────────────────────────────────────────────────
