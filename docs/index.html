@@ -38,7 +38,7 @@
     /* ── Layout ── */
     #shell {
       display: grid;
-      grid-template-rows: auto auto 1fr auto;
+      grid-template-rows: auto auto 1fr auto auto;
       height: 100vh;
       overflow: hidden;
     }
@@ -293,6 +293,86 @@
       color: var(--muted);
     }
 
+    /* ── List view ── */
+    #list-view {
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+      background: var(--cream);
+      padding: 1rem 1.25rem;
+      gap: 0;
+    }
+    #list-view.active {
+      display: flex;
+      grid-row: 3 / 6;
+    }
+
+    .list-date-group { margin-bottom: 1.25rem; }
+    .list-date-heading {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.6rem;
+    }
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.65rem;
+    }
+    .list-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    }
+    .list-card:hover {
+      border-color: var(--rust);
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+    .list-card.seen {
+      background: var(--parchment);
+      border-color: var(--sand);
+      opacity: 0.65;
+    }
+    .list-card.seen .card-rent { color: var(--muted); }
+    .list-card.seen .card-hood { color: var(--muted); }
+
+    /* ── View toggle ── */
+    .view-toggle {
+      display: flex;
+      border: 1px solid var(--sand);
+      border-radius: 999px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .view-toggle button {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.75rem;
+      border: none;
+      background: none;
+      color: var(--ink-mid);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .view-toggle button.active {
+      background: var(--rust);
+      color: #fff;
+    }
+
     /* ── Leaflet popup overrides ── */
     .leaflet-popup-content-wrapper {
       background: var(--cream);
@@ -409,6 +489,11 @@
     <span class="chip" data-beds="3">3 BR</span>
     <span class="divider"></span>
     <span class="chip" id="chip-new" data-new="true">New today</span>
+    <span class="divider"></span>
+    <div class="view-toggle">
+      <button id="btn-map" class="active">Map</button>
+      <button id="btn-list">List</button>
+    </div>
   </div>
 
   <div style="position:relative; overflow:hidden; min-height:0;">
@@ -424,6 +509,8 @@
   <div id="drawer">
     <div id="empty-drawer">No listings match the filter.</div>
   </div>
+
+  <div id="list-view"></div>
 
 </div>
 
@@ -629,6 +716,8 @@
       const bounds = L.latLngBounds(listings.map(l => [l.lat, l.lng]));
       map.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 });
     }
+
+    if (activeView === 'list') renderListView();
   }
 
   function scrollToCard(i) {
@@ -757,6 +846,125 @@
     const s = Math.floor((remaining % 60000) / 1000);
     document.getElementById('countdown').textContent = `${m}:${s.toString().padStart(2,'0')}`;
   }, 1000);
+
+  // ── View toggle ────────────────────────────────────────────────────────
+
+  let activeView = 'map'; // 'map' | 'list'
+
+  const mapWrap  = document.querySelector('#shell > div[style]');
+  const drawer   = document.getElementById('drawer');
+  const listView = document.getElementById('list-view');
+
+  function setView(v) {
+    activeView = v;
+    document.getElementById('btn-map').classList.toggle('active', v === 'map');
+    document.getElementById('btn-list').classList.toggle('active', v === 'list');
+    mapWrap.style.display  = v === 'map' ? '' : 'none';
+    drawer.style.display   = v === 'map' ? '' : 'none';
+    listView.classList.toggle('active', v === 'list');
+    if (v === 'list') renderListView();
+  }
+
+  document.getElementById('btn-map').addEventListener('click', () => setView('map'));
+  document.getElementById('btn-list').addEventListener('click', () => { setView('list'); });
+
+  function formatDate(ts) {
+    if (!ts) return 'Unknown date';
+    const d = new Date(ts);
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const day   = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    const diff  = (today - day) / 86400000;
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+  }
+
+  function renderListView() {
+    const listings = filtered().slice().sort((a, b) => {
+      const ta = a.first_seen ? new Date(a.first_seen).getTime() : 0;
+      const tb = b.first_seen ? new Date(b.first_seen).getTime() : 0;
+      return tb - ta;
+    });
+
+    if (!listings.length) {
+      listView.innerHTML = '<div style="padding:2rem;font-family:var(--sans);font-size:0.85rem;color:var(--muted)">No listings match the filter.</div>';
+      return;
+    }
+
+    // Group by date
+    const groups = [];
+    const groupMap = {};
+    listings.forEach(l => {
+      const key = formatDate(l.first_seen);
+      if (!groupMap[key]) { groupMap[key] = []; groups.push(key); }
+      groupMap[key].push(l);
+    });
+
+    listView.innerHTML = groups.map(dateLabel => {
+      const items = groupMap[dateLabel];
+      return `<div class="list-date-group">
+        <div class="list-date-heading">${dateLabel}</div>
+        <div class="list-grid">
+          ${items.map((l, idx) => {
+            const seen  = isSeen(l);
+            const fresh = !seen && isNew(l.first_seen);
+            const globalIdx = listings.indexOf(l);
+            return `<a class="list-card${seen ? ' seen' : ''}" id="lcard-${globalIdx}" href="${l.url}" target="_blank" rel="noopener"
+                       onclick="markSeenByListing(${globalIdx})">
+              <div class="card-hood">
+                <span>${l.neighborhood}</span>
+                ${fresh ? '<span class="badge-new">NEW</span>' : ''}
+                ${l.pets === 'none' ? '<span class="badge-no-pets">No Pets</span>' : ''}
+                <button class="btn-seen" onclick="toggleSeenList(${globalIdx}, event)">${seen ? '✓ Viewed' : 'Mark viewed'}</button>
+              </div>
+              <div class="card-address">${l.address || '—'}</div>
+              <div class="card-source">${l.source}</div>
+              <div class="card-meta">
+                <span class="card-beds">${l.beds} BR</span>
+                <span class="card-rent">${l.rent || ''}</span>
+              </div>
+            </a>`;
+          }).join('')}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.markSeenByListing = function(i) {
+    const listings = filtered().slice().sort((a, b) => {
+      return (b.first_seen ? new Date(b.first_seen).getTime() : 0) -
+             (a.first_seen ? new Date(a.first_seen).getTime() : 0);
+    });
+    const l = listings[i];
+    if (!l || isSeen(l)) return;
+    markSeen(l);
+    const card = document.getElementById(`lcard-${i}`);
+    if (card) {
+      card.classList.add('seen');
+      const btn = card.querySelector('.btn-seen');
+      if (btn) btn.textContent = '✓ Viewed';
+    }
+  };
+
+  window.toggleSeenList = function(i, e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const listings = filtered().slice().sort((a, b) => {
+      return (b.first_seen ? new Date(b.first_seen).getTime() : 0) -
+             (a.first_seen ? new Date(a.first_seen).getTime() : 0);
+    });
+    const l = listings[i];
+    if (!l) return;
+    isSeen(l) ? unmarkSeen(l) : markSeen(l);
+    const card = document.getElementById(`lcard-${i}`);
+    if (card) {
+      const nowSeen = isSeen(l);
+      card.classList.toggle('seen', nowSeen);
+      const btn = card.querySelector('.btn-seen');
+      if (btn) btn.textContent = nowSeen ? '✓ Viewed' : 'Mark viewed';
+    }
+  };
 
   // ── Boot ───────────────────────────────────────────────────────────────
   refresh();
