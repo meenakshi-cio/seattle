@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T17:34:34.759599+00:00",
+  "updated": "2026-06-19T17:50:56.902044+00:00",
   "listings": [
     {
       "source": "Walls Property Management",
@@ -39,6 +39,30 @@
     },
     {
       "source": "Walls Property Management",
+      "beds": 2,
+      "neighborhood": "Fremont",
+      "address": "4431 Evanston Ave N - 202, Seattle, WA 98103",
+      "rent": "$3,095",
+      "pets": "allowed",
+      "url": "https://wallspropertymanagement.com/vacancies",
+      "first_seen": "2026-06-19T14:16:44.049254+00:00",
+      "lat": 47.661158,
+      "lng": -122.3513261
+    },
+    {
+      "source": "Walls Property Management",
+      "beds": 2,
+      "neighborhood": "Ballard",
+      "address": "5210 Russell Avenue NW - R-404, Seattle, WA 98107",
+      "rent": "$3,195",
+      "pets": "allowed",
+      "url": "https://wallspropertymanagement.com/vacancies",
+      "first_seen": "2026-06-19T14:16:44.049254+00:00",
+      "lat": 47.6677,
+      "lng": -122.383
+    },
+    {
+      "source": "Walls Property Management",
       "beds": 3,
       "neighborhood": "Ballard",
       "address": "7522 24th Ave NW - 3, Seattle, WA 98117",
@@ -74,6 +98,30 @@
       "lng": -122.3872467
     },
     {
+      "source": "Redside Partners",
+      "beds": 2,
+      "neighborhood": "Ballard",
+      "address": "2250 NW 59th St - 406, Seattle, WA 98107",
+      "rent": "$3,195",
+      "pets": "unknown",
+      "url": "https://www.redsidepartners.com/managed-properties/",
+      "first_seen": "2026-06-19T03:26:55.815872+00:00",
+      "lat": 47.6718103,
+      "lng": -122.3868262
+    },
+    {
+      "source": "Redside Partners",
+      "beds": 2,
+      "neighborhood": "Queen Anne",
+      "address": "1000 1st Ave W Apt 503, Seattle, WA 98119",
+      "rent": "$3,195",
+      "pets": "allowed",
+      "url": "https://www.redsidepartners.com/managed-properties/",
+      "first_seen": "2026-06-19T03:26:55.815872+00:00",
+      "lat": 47.6280045,
+      "lng": -122.3577195
+    },
+    {
       "source": "North Pacific Property Management",
       "beds": 2,
       "neighborhood": "Queen Anne",
@@ -94,8 +142,20 @@
       "pets": "none",
       "url": "https://northpacificpm.appfolio.com/listings/detail/ebb810c9-524a-49d6-bf5f-12482f742ed5",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.670633,
-      "lng": -122.3807919
+      "lat": 47.6706332,
+      "lng": -122.3807113
+    },
+    {
+      "source": "Ballard Realty",
+      "beds": 2,
+      "neighborhood": "Ballard",
+      "address": "5440 Leary Ave NW #618, Seattle, WA 98107",
+      "rent": "$3,400",
+      "pets": "none",
+      "url": "https://ballardpm.appfolio.com/listings/detail/b309c876-cbd2-4132-9b92-4b4446ed77ad",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6674905,
+      "lng": -122.3829403
     },
     {
       "source": "Ballard Realty",
@@ -136,6 +196,30 @@
     {
       "source": "SJA Property Management",
       "beds": 3,
+      "neighborhood": "Fremont",
+      "address": "944 N 97th Street, Seattle, WA 98103",
+      "rent": "$3,250",
+      "pets": "allowed",
+      "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6997077,
+      "lng": -122.3466518
+    },
+    {
+      "source": "SJA Property Management",
+      "beds": 2,
+      "neighborhood": "Green Lake",
+      "address": "549 NE 89th Street, Seattle, WA 98115",
+      "rent": "$3,200",
+      "pets": "allowed",
+      "url": "https://sja.appfolio.com/listings/detail/ec12f016-3d87-4583-9ef1-9f6ace4086d4",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6929533,
+      "lng": -122.3209571
+    },
+    {
+      "source": "SJA Property Management",
+      "beds": 3,
       "neighborhood": "Ballard",
       "address": "2645 B NW 57th St, Seattle, WA 98107",
       "rent": "$3,495",
@@ -144,6 +228,30 @@
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6704334,
       "lng": -122.40355
+    },
+    {
+      "source": "SJA Property Management",
+      "beds": 2,
+      "neighborhood": "Green Lake",
+      "address": "9519 B 5th Ave NE, Seattle, WA 98115",
+      "rent": "$3,695",
+      "pets": "allowed",
+      "url": "https://sja.appfolio.com/listings/detail/a333a898-a3b5-4323-a329-94015f79c63d",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6805395,
+      "lng": -122.3228662
+    },
+    {
+      "source": "SJA Property Management",
+      "beds": 3,
+      "neighborhood": "Ballard",
+      "address": "824 NW 63rd St Unit B, Seattle, WA 98107",
+      "rent": "$3,795",
+      "pets": "none",
+      "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "Avenue One Residential",
@@ -180,6 +288,66 @@
       "first_seen": "2026-06-19T03:26:55.815872+00:00",
       "lat": 47.6597637,
       "lng": -122.345439
+    },
+    {
+      "source": "Real Property Associates",
+      "beds": 3,
+      "neighborhood": "Ballard",
+      "address": "8314 14th Ave NW , Unit A, Seattle, WA 98117",
+      "rent": "$4,450",
+      "pets": "allowed",
+      "url": "https://rpa.appfolio.com/listings/detail/f99d90b9-53fc-47ac-a137-f18d28dbd50a",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6893264,
+      "lng": -122.3735819
+    },
+    {
+      "source": "Seattle Rental Group",
+      "beds": 3,
+      "neighborhood": "Fremont",
+      "address": "3814 Interlake Ave N Unit B , Seattle, WA 98103",
+      "rent": "$3,760",
+      "pets": "allowed",
+      "url": "https://gpsrenting.appfolio.com/listings/detail/d510f311-dd4b-48b3-b3b3-ff0169b2c9c8",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6531928,
+      "lng": -122.3408685
+    },
+    {
+      "source": "Lori Gill & Associates (Windermere)",
+      "beds": 2,
+      "neighborhood": "Ballard",
+      "address": "2213 NW 60th St, Seattle, WA 98107",
+      "rent": "$3,300",
+      "pets": "none",
+      "url": "https://wpmnorthwest.appfolio.com/listings/detail/c53bfad3-96f3-4c53-bf3e-05907b55fc51",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6722194,
+      "lng": -122.3853362
+    },
+    {
+      "source": "Lori Gill & Associates (Windermere)",
+      "beds": 2,
+      "neighborhood": "Fremont",
+      "address": "3803 Carr Place N, Seattle, WA 98103",
+      "rent": "$3,150",
+      "pets": "none",
+      "url": "https://wpmnorthwest.appfolio.com/listings/detail/e778173a-8b73-483d-8719-1d674a34f6c6",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6528376,
+      "lng": -122.339505
+    },
+    {
+      "source": "Lori Gill & Associates (Windermere)",
+      "beds": 3,
+      "neighborhood": "Fremont",
+      "address": "3615 Albion Place N #A, Seattle, WA 98103",
+      "rent": "$4,295",
+      "pets": "none",
+      "url": "https://wpmnorthwest.appfolio.com/listings/detail/4ec8f126-4ff5-44f2-9a54-4648eddc9141",
+      "first_seen": "2026-06-19T17:50:56.902044+00:00",
+      "lat": 47.6512028,
+      "lng": -122.3451345
     }
   ]
 }
