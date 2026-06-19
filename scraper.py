@@ -694,10 +694,11 @@ def main() -> None:
     listings_with_meta = [l for l in listings_with_meta if _rent_int(l.get("rent", "0")) >= 3000]
     new_listings = [l for l in listings_with_meta
                     if not seen[listing_id(l)]["notified"] and l.get("pets") != "none"]
-    if new_listings:
-        for l in new_listings:
+    # Mark everything notified — including listings filtered out by rent — so they never re-trigger.
+    for l in all_found:
+        if listing_id(l) in seen:
             seen[listing_id(l)]["notified"] = True
-        save_seen(seen)
+    save_seen(seen)
     notify_new_listings(new_listings)
     write_listings_json(listings_with_meta, now_iso)
     git_push(new_count)
