@@ -229,6 +229,43 @@
       color: var(--muted);
     }
 
+    /* ── Seen / viewed ── */
+    .card.seen {
+      background: var(--parchment);
+      border-color: var(--sand);
+      opacity: 0.65;
+    }
+    .card.seen .card-rent { color: var(--muted); }
+    .card.seen .card-hood { color: var(--muted); }
+
+    .btn-seen {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--sand);
+      border-radius: 3px;
+      padding: 1px 5px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      line-height: 1.4;
+    }
+    .btn-seen:hover { border-color: var(--teal); color: var(--teal); }
+    .card.seen .btn-seen { color: var(--teal); border-color: var(--teal); }
+    .btn-seen-undo {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+    }
+    .btn-seen-undo:hover { color: var(--rust); }
+
     .badge-no-pets {
       display: inline-block;
       font-family: var(--sans);
@@ -375,6 +412,7 @@
     <div id="legend">
       <div class="legend-row"><span class="legend-dot" style="background:#5b8fa8"></span>2 Bedroom</div>
       <div class="legend-row"><span class="legend-dot" style="background:#b85c38"></span>3 Bedroom</div>
+      <div class="legend-row"><span class="legend-dot" style="background:#aaa89e;opacity:0.55"></span>Viewed</div>
     </div>
   </div>
 
@@ -405,6 +443,29 @@
   let activeBeds   = 'all';
   let markerLayer  = L.layerGroup().addTo(map);
 
+  // ── Seen listings (persisted, keyed by address) ───────────────────────
+  const SEEN_KEY = 'seattle-rentals-seen';
+  function loadSeen() {
+    try { return new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || '[]')); }
+    catch { return new Set(); }
+  }
+  function saveSeen(set) {
+    localStorage.setItem(SEEN_KEY, JSON.stringify([...set]));
+  }
+  let seenKeys = loadSeen();
+
+  function seenId(l) { return l.address || l.url; }
+
+  function markSeen(l) {
+    seenKeys.add(seenId(l));
+    saveSeen(seenKeys);
+  }
+  function unmarkSeen(l) {
+    seenKeys.delete(seenId(l));
+    saveSeen(seenKeys);
+  }
+  function isSeen(l) { return seenKeys.has(seenId(l)); }
+
   // ── Helpers ────────────────────────────────────────────────────────────
 
   function isNew(ts) {
@@ -415,16 +476,18 @@
     return beds === 2 ? '#5b8fa8' : '#b85c38';
   }
 
-  function makeIcon(beds, isNewListing) {
-    const color  = markerColor(beds);
-    const border = isNewListing ? '#c98a2e' : 'rgba(255,255,255,0.85)';
-    const size   = isNewListing ? 16 : 13;
+  function makeIcon(beds, isNewListing, isSeen) {
+    const color  = isSeen ? '#aaa89e' : markerColor(beds);
+    const border = isNewListing && !isSeen ? '#c98a2e' : 'rgba(255,255,255,0.75)';
+    const size   = isNewListing && !isSeen ? 16 : 13;
+    const opacity = isSeen ? '0.55' : '1';
     return L.divIcon({
       className: '',
       html: `<div style="
         width:${size}px; height:${size}px; border-radius:50%;
         background:${color}; border:2.5px solid ${border};
         box-shadow:0 1px 5px rgba(0,0,0,0.3);
+        opacity:${opacity};
       "></div>`,
       iconSize: [size, size],
       iconAnchor: [size/2, size/2],
@@ -451,7 +514,8 @@
     // Markers
     listings.forEach((l, i) => {
       const fresh = isNew(l.first_seen);
-      const marker = L.marker([l.lat, l.lng], { icon: makeIcon(l.beds, fresh) });
+      const seen  = isSeen(l);
+      const marker = L.marker([l.lat, l.lng], { icon: makeIcon(l.beds, fresh, seen) });
 
       const badge = fresh ? '<span style="font-size:0.6rem;font-weight:700;color:#c98a2e;background:#fdf3dc;border:1px solid #c98a2e;padding:1px 5px;border-radius:3px;margin-left:6px;">NEW</span>' : '';
       const noPetsBadge = l.pets === 'none' ? '<span class="badge-no-pets" style="margin-left:6px;">No Pets</span>' : '';
@@ -484,12 +548,14 @@
 
     drawer.innerHTML = listings.map((l, i) => {
       const fresh = isNew(l.first_seen);
-      return `<a class="card" id="card-${i}" href="${l.url}" target="_blank" rel="noopener"
-                 onclick="highlightMarker(${i}, event)">
+      const seen  = isSeen(l);
+      return `<a class="card${seen ? ' seen' : ''}" id="card-${i}" href="${l.url}" target="_blank" rel="noopener"
+                 onclick="highlightMarker(${i})">
         <div class="card-hood">
           <span>${l.neighborhood}</span>
           ${fresh ? '<span class="badge-new">NEW</span>' : ''}
           ${l.pets === 'none' ? '<span class="badge-no-pets">No Pets</span>' : ''}
+          <button class="btn-seen" onclick="toggleSeen(${i}, event)">${seen ? '✓ Viewed' : 'Mark viewed'}</button>
         </div>
         <div class="card-address">${l.address || '—'}</div>
         <div class="card-source">${l.source}</div>
@@ -516,11 +582,42 @@
     }
   }
 
-  window.highlightMarker = function(i, e) {
-    // Don't prevent navigation, just highlight
+  window.highlightMarker = function(i) {
     document.querySelectorAll('.card').forEach(c => c.classList.remove('highlighted'));
     const card = document.getElementById(`card-${i}`);
     if (card) card.classList.add('highlighted');
+  };
+
+  function redrawMarkers(listings) {
+    markerLayer.clearLayers();
+    listings.forEach((l, j) => {
+      const fresh = isNew(l.first_seen);
+      const seen  = isSeen(l);
+      const marker = L.marker([l.lat, l.lng], { icon: makeIcon(l.beds, fresh, seen) });
+      marker.on('click', () => scrollToCard(j));
+      markerLayer.addLayer(marker);
+    });
+  }
+
+  window.toggleSeen = function(i, e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const listings = filtered();
+    const l = listings[i];
+    if (!l) return;
+    if (isSeen(l)) {
+      unmarkSeen(l);
+    } else {
+      markSeen(l);
+    }
+    // Update card in-place
+    const card = document.getElementById(`card-${i}`);
+    if (card) {
+      card.classList.toggle('seen', isSeen(l));
+      const btn = card.querySelector('.btn-seen');
+      if (btn) btn.textContent = isSeen(l) ? '✓ Viewed' : 'Mark viewed';
+    }
+    redrawMarkers(listings);
   };
 
   // ── Stats ──────────────────────────────────────────────────────────────
