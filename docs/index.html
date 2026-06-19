@@ -186,9 +186,12 @@
       letter-spacing: 0.1em;
       color: var(--rust);
       display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
       justify-content: space-between;
       align-items: center;
     }
+    .card-hood .btn-seen { margin-left: auto; }
     .badge-new {
       font-size: 0.58rem;
       font-weight: 700;
@@ -443,8 +446,10 @@
   let activeBeds   = 'all';
   let markerLayer  = L.layerGroup().addTo(map);
 
-  // ── Seen listings (persisted, keyed by address) ───────────────────────
+  // ── Seen listings (localStorage cache + Neon backend) ───────────────────
   const SEEN_KEY = 'seattle-rentals-seen';
+  const API = '/api/viewed';
+
   function loadSeen() {
     try { return new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || '[]')); }
     catch { return new Set(); }
@@ -454,22 +459,38 @@
   }
   let seenKeys = loadSeen();
 
+  // Sync from server on load, merge with local cache
+  fetch(API).then(r => r.json()).then(ids => {
+    ids.forEach(id => seenKeys.add(id));
+    saveSeen(seenKeys);
+    render();
+  }).catch(() => {});
+
   function seenId(l) { return l.address || l.url; }
 
   function markSeen(l) {
-    seenKeys.add(seenId(l));
+    const id = seenId(l);
+    seenKeys.add(id);
     saveSeen(seenKeys);
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) }).catch(() => {});
   }
   function unmarkSeen(l) {
-    seenKeys.delete(seenId(l));
+    const id = seenId(l);
+    seenKeys.delete(id);
     saveSeen(seenKeys);
+    fetch(API, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) }).catch(() => {});
   }
   function isSeen(l) { return seenKeys.has(seenId(l)); }
 
   // ── Helpers ────────────────────────────────────────────────────────────
 
   function isNew(ts) {
-    return ts && (Date.now() - new Date(ts).getTime()) < NEW_HOURS * 3600000;
+    if (!ts) return false;
+    const d = new Date(ts);
+    const now = new Date();
+    return d.getFullYear() === now.getFullYear() &&
+           d.getMonth()    === now.getMonth() &&
+           d.getDate()     === now.getDate();
   }
 
   function markerColor(beds) {
@@ -505,37 +526,66 @@
     });
   }
 
+  // ── Marker factory ─────────────────────────────────────────────────────
+
+  function makeMarker(l, i) {
+    const seen  = isSeen(l);
+    const fresh = !seen && isNew(l.first_seen);
+    const marker = L.marker([l.lat + (l._jitterLat || 0), l.lng + (l._jitterLng || 0)], { icon: makeIcon(l.beds, fresh, seen) });
+
+    const badge = fresh ? '<span style="font-size:0.6rem;font-weight:700;color:#c98a2e;background:#fdf3dc;border:1px solid #c98a2e;padding:1px 5px;border-radius:3px;margin-left:6px;">NEW</span>' : '';
+    const noPetsBadge = l.pets === 'none' ? '<span class="badge-no-pets" style="margin-left:6px;">No Pets</span>' : '';
+    marker.bindPopup(`
+      <div class="popup-hood">${l.neighborhood}${badge}${noPetsBadge}</div>
+      <div class="popup-address">${l.address || '—'}</div>
+      <div class="popup-row">
+        <span class="popup-beds">${l.beds} Bedroom${l.beds!==1?'s':''}</span>
+        <span class="popup-rent">${l.rent || ''}</span>
+      </div>
+      <div class="popup-source">${l.source}</div>
+      <a class="popup-link" href="${l.url}" target="_blank" rel="noopener">View listing →</a>
+    `, { maxWidth: 240 });
+
+    marker.on('popupopen', () => {
+      const link = marker.getPopup().getElement().querySelector('.popup-link');
+      if (link) link.addEventListener('click', () => markSeenByIndex(i), { once: true });
+    });
+    marker.on('click', () => scrollToCard(i));
+    return marker;
+  }
+
   // ── Render ─────────────────────────────────────────────────────────────
 
   function render() {
     const listings = filtered();
     markerLayer.clearLayers();
 
+    // Offset markers that share exact coordinates so stacked dots are visible
+    const coordCount = {};
+    listings.forEach(l => {
+      const key = `${l.lat},${l.lng}`;
+      coordCount[key] = (coordCount[key] || 0) + 1;
+    });
+    const coordIdx = {};
+    listings.forEach(l => {
+      const key = `${l.lat},${l.lng}`;
+      const total = coordCount[key];
+      if (total > 1) {
+        const idx = coordIdx[key] = (coordIdx[key] || 0);
+        coordIdx[key]++;
+        const angle = (2 * Math.PI * idx) / total;
+        const r = 0.00008;
+        l._jitterLat = r * Math.cos(angle);
+        l._jitterLng = r * Math.sin(angle) / Math.cos(l.lat * Math.PI / 180);
+      } else {
+        l._jitterLat = 0;
+        l._jitterLng = 0;
+      }
+    });
+
     // Markers
     listings.forEach((l, i) => {
-      const fresh = isNew(l.first_seen);
-      const seen  = isSeen(l);
-      const marker = L.marker([l.lat, l.lng], { icon: makeIcon(l.beds, fresh, seen) });
-
-      const badge = fresh ? '<span style="font-size:0.6rem;font-weight:700;color:#c98a2e;background:#fdf3dc;border:1px solid #c98a2e;padding:1px 5px;border-radius:3px;margin-left:6px;">NEW</span>' : '';
-      const noPetsBadge = l.pets === 'none' ? '<span class="badge-no-pets" style="margin-left:6px;">No Pets</span>' : '';
-      marker.bindPopup(`
-        <div class="popup-hood">${l.neighborhood}${badge}${noPetsBadge}</div>
-        <div class="popup-address">${l.address || '—'}</div>
-        <div class="popup-row">
-          <span class="popup-beds">${l.beds} Bedroom${l.beds!==1?'s':''}</span>
-          <span class="popup-rent">${l.rent || ''}</span>
-        </div>
-        <div class="popup-source">${l.source}</div>
-        <a class="popup-link" href="${l.url}" target="_blank" rel="noopener" data-seen-idx="${i}">View listing →</a>
-      `, { maxWidth: 240 });
-
-      marker.on('popupopen', () => {
-        const link = marker.getPopup().getElement().querySelector('.popup-link');
-        if (link) link.addEventListener('click', () => markSeenByIndex(i), { once: true });
-      });
-      marker.on('click', () => scrollToCard(i));
-      markerLayer.addLayer(marker);
+      markerLayer.addLayer(makeMarker(l, i));
     });
 
     // Drawer cards
@@ -551,10 +601,10 @@
     empty.style.display = 'none';
 
     drawer.innerHTML = listings.map((l, i) => {
-      const fresh = isNew(l.first_seen);
       const seen  = isSeen(l);
+      const fresh = !seen && isNew(l.first_seen);
       return `<a class="card${seen ? ' seen' : ''}" id="card-${i}" href="${l.url}" target="_blank" rel="noopener"
-                 onclick="highlightMarker(${i})">
+                 onclick="highlightMarker(${i}); markSeenByIndex(${i})">
         <div class="card-hood">
           <span>${l.neighborhood}</span>
           ${fresh ? '<span class="badge-new">NEW</span>' : ''}
@@ -595,11 +645,7 @@
   function redrawMarkers(listings) {
     markerLayer.clearLayers();
     listings.forEach((l, j) => {
-      const fresh = isNew(l.first_seen);
-      const seen  = isSeen(l);
-      const marker = L.marker([l.lat, l.lng], { icon: makeIcon(l.beds, fresh, seen) });
-      marker.on('click', () => scrollToCard(j));
-      markerLayer.addLayer(marker);
+      markerLayer.addLayer(makeMarker(l, j));
     });
   }
 
@@ -633,9 +679,12 @@
     // Update card in-place
     const card = document.getElementById(`card-${i}`);
     if (card) {
-      card.classList.toggle('seen', isSeen(l));
+      const nowSeen = isSeen(l);
+      card.classList.toggle('seen', nowSeen);
       const btn = card.querySelector('.btn-seen');
-      if (btn) btn.textContent = isSeen(l) ? '✓ Viewed' : 'Mark viewed';
+      if (btn) btn.textContent = nowSeen ? '✓ Viewed' : 'Mark viewed';
+      const badge = card.querySelector('.badge-new');
+      if (badge) badge.style.display = nowSeen ? 'none' : '';
     }
     redrawMarkers(listings);
   };
