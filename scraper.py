@@ -49,7 +49,7 @@ def notify_new_listings(new_listings: list) -> None:
         }
         try:
             requests.put(
-                "https://api.customer.io/v1/customers/219",
+                "https://api.customer.io/v1/customers/meenakshi.sharma%40customer.io",
                 json=profile_payload,
                 headers={
                     "Authorization": f"Bearer {CIO_API_KEY}",
