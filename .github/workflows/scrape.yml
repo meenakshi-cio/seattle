@@ -22,8 +22,7 @@ jobs:
       - name: Run scraper
         env:
           CIO_APP_API_KEY: ${{ secrets.CIO_APP_API_KEY }}
-          CIO_SITE_ID: ${{ secrets.CIO_SITE_ID }}
-          CIO_TRACK_API_KEY: ${{ secrets.CIO_TRACK_API_KEY }}
+          CIO_PIPELINES_API_KEY: ${{ secrets.CIO_PIPELINES_API_KEY }}
           CI: "true"
         run: python scraper.py
 

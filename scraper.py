@@ -27,13 +27,11 @@ from bs4 import BeautifulSoup
 # Customer.io transactional email notification
 # ---------------------------------------------------------------------------
 
-CIO_API_KEY       = os.environ.get("CIO_APP_API_KEY", "")
-CIO_SITE_ID       = os.environ.get("CIO_SITE_ID", "")
-CIO_TRACK_API_KEY = os.environ.get("CIO_TRACK_API_KEY", "")
-NOTIFY_PHONE      = "+19703339757"
-NOTIFY_EMAIL      = "meenakshi.sharma@customer.io"
-CIO_SEND_URL      = "https://api.customer.io/v1/send/sms"
-CIO_MSG_ID        = 2
+CIO_API_KEY          = os.environ.get("CIO_APP_API_KEY", "")
+CIO_PIPELINES_API_KEY = os.environ.get("CIO_PIPELINES_API_KEY", "")
+NOTIFY_PHONE         = "+19703339757"
+CIO_SEND_URL         = "https://api.customer.io/v1/send/sms"
+CIO_MSG_ID           = 2
 
 
 def notify_new_listings(new_listings: list) -> None:
@@ -47,15 +45,20 @@ def notify_new_listings(new_listings: list) -> None:
 
     for l in new_listings:
         try:
-            r = requests.put(
-                "https://api.customer.io/v1/customers/e6f10900db01dc01",
+            import base64
+            encoded = base64.b64encode(f"{CIO_PIPELINES_API_KEY}:".encode()).decode()
+            r = requests.post(
+                "https://cdp.customer.io/v1/identify",
                 json={
-                    "neighborhood": l["neighborhood"],
-                    "rent": l["rent"],
-                    "source": l["source"],
-                    "url": l["url"],
+                    "userId": "meenakshi.sharma@customer.io",
+                    "traits": {
+                        "neighborhood": l["neighborhood"],
+                        "rent": l["rent"],
+                        "source": l["source"],
+                        "url": l["url"],
+                    },
                 },
-                headers=headers,
+                headers={"Authorization": f"Basic {encoded}", "Content-Type": "application/json"},
                 timeout=10,
             )
             print(f"  [notify] Profile update: {r.status_code} {r.text[:100]}")
