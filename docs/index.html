@@ -527,7 +527,7 @@
           <span class="popup-rent">${l.rent || ''}</span>
         </div>
         <div class="popup-source">${l.source}</div>
-        <a class="popup-link" href="${l.url}" target="_blank" rel="noopener">View listing →</a>
+        <a class="popup-link" href="${l.url}" target="_blank" rel="noopener" onclick="markSeenByIndex(${i})">View listing →</a>
       `, { maxWidth: 240 });
 
       marker.on('click', () => scrollToCard(i));
@@ -598,6 +598,22 @@
       markerLayer.addLayer(marker);
     });
   }
+
+  window.markSeenByIndex = function(i) {
+    const listings = filtered();
+    const l = listings[i];
+    if (!l || isSeen(l)) return;
+    markSeen(l);
+    // Update marker immediately
+    redrawMarkers(listings);
+    // Update card if visible
+    const card = document.getElementById(`card-${i}`);
+    if (card) {
+      card.classList.add('seen');
+      const btn = card.querySelector('.btn-seen');
+      if (btn) btn.textContent = '✓ Viewed';
+    }
+  };
 
   window.toggleSeen = function(i, e) {
     e.preventDefault();
