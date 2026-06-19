@@ -6,9 +6,10 @@ Scrapes property management companies and writes docs/listings.json,
 which a GitHub Pages site displays with auto-refresh.
 
 Backend breakdown:
-  AppFolio (12 sites): Walls, Redside, Cornell, North Pacific, Madeson,
+  AppFolio (14 sites): Walls, Redside, Cornell, North Pacific, Madeson,
                         Ballard Realty, SJA PM, Avenue One, 206 PM, RPA,
-                        Seattle Rental Group, Windermere PM
+                        Seattle Rental Group, Lori Gill/Windermere NW,
+                        Seattle Home Mgmt, Davis PM, Dwellings Seattle
   Propertyware (1 site): Maple Leaf Management
   Playwright (1 site):  Doorstead
 """
@@ -152,7 +153,10 @@ APPFOLIO_SITES = [
     ("206 Property Management",             "https://twozerosixpm.appfolio.com"),
     ("Real Property Associates",            "https://rpa.appfolio.com"),
     ("Seattle Rental Group",                "https://gpsrenting.appfolio.com"),
-    ("Windermere Property Management",      "https://windermerepropertymgmt.appfolio.com"),
+    ("Lori Gill & Associates (Windermere)", "https://wpmnorthwest.appfolio.com"),
+    ("Seattle Home Management",            "https://metropolitanrealty.appfolio.com"),
+    ("Davis Property Management",          "https://davis.appfolio.com"),
+    ("Dwellings Seattle",                  "https://yourseattlehometeam.appfolio.com"),
 ]
 
 
@@ -169,7 +173,7 @@ PROPERTYWARE_SITES = [
 PROPERTYWARE_BASE = "https://connect.propertyware.com"
 
 # ---------------------------------------------------------------------------
-# Persistence — seen_listings.json stores {listing_id: first_seen_iso}
+# Persistence — seen_listings.json stores {listing_id: {first_seen, notified}}
 # ---------------------------------------------------------------------------
 
 def load_seen() -> dict:
@@ -178,8 +182,15 @@ def load_seen() -> dict:
         # Migrate from old flat-list format
         if isinstance(data, list):
             now = datetime.now(timezone.utc).isoformat()
-            return {lid: now for lid in data}
-        return data
+            return {lid: {"first_seen": now, "notified": True} for lid in data}
+        # Migrate from {lid: iso_string} format
+        migrated = {}
+        for lid, val in data.items():
+            if isinstance(val, str):
+                migrated[lid] = {"first_seen": val, "notified": True}
+            else:
+                migrated[lid] = val
+        return migrated
     return {}
 
 
@@ -660,12 +671,12 @@ def main() -> None:
     for listing in all_found:
         lid = listing_id(listing)
         if lid not in seen:
-            seen[lid] = now_iso
+            seen[lid] = {"first_seen": now_iso, "notified": False}
             new_count += 1
         lat, lng = geocode(listing["address"], listing["neighborhood"], geocache)
         listings_with_meta.append({
             **listing,
-            "first_seen": seen[lid],
+            "first_seen": seen[lid]["first_seen"],
             "lat": lat,
             "lng": lng,
         })
@@ -681,7 +692,12 @@ def main() -> None:
             return 0
 
     listings_with_meta = [l for l in listings_with_meta if _rent_int(l.get("rent", "0")) >= 3000]
-    new_listings = [l for l in listings_with_meta if l["first_seen"] == now_iso and l.get("pets") != "none"]
+    new_listings = [l for l in listings_with_meta
+                    if not seen[listing_id(l)]["notified"] and l.get("pets") != "none"]
+    if new_listings:
+        for l in new_listings:
+            seen[listing_id(l)]["notified"] = True
+        save_seen(seen)
     notify_new_listings(new_listings)
     write_listings_json(listings_with_meta, now_iso)
     git_push(new_count)
