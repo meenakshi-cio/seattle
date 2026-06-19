@@ -5,3 +5,5 @@ scraper.log
 scraper.err
 geocode_cache.json
 .DS_Store
+.vercel
+node_modules/

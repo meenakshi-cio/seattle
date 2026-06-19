@@ -1,0 +1,9 @@
+{
+  "buildCommand": null,
+  "outputDirectory": "docs",
+  "framework": null,
+  "functions": {
+    "api/*.js": { "memory": 128, "maxDuration": 10 }
+  },
+  "ignoreCommand": "exit 1"
+}
