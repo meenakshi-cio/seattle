@@ -164,7 +164,7 @@
       "address": "1700  Taylor Ave N #201, Seattle, WA 98109",
       "rent": "$2,195",
       "pets": "allowed",
-      "url": "https://redside.appfolio.com/listings/",
+      "url": "https://redside.appfolio.com/listings/detail/2bb44e30-9796-4cb1-8862-b1f8018b18ba",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.634352,
       "lng": -122.3462097
@@ -176,7 +176,7 @@
       "address": "1212 5th Ave. N. - 102, Seattle, WA 98109",
       "rent": "$2,300",
       "pets": "allowed",
-      "url": "https://redside.appfolio.com/listings/",
+      "url": "https://redside.appfolio.com/listings/detail/29327453-926a-4381-aca6-48eb1a228d03",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6301888,
       "lng": -122.3472664
@@ -188,7 +188,7 @@
       "address": "1212 5th Ave. N. - 2, Seattle, WA 98109",
       "rent": "$2,200",
       "pets": "allowed",
-      "url": "https://redside.appfolio.com/listings/",
+      "url": "https://redside.appfolio.com/listings/detail/4d950435-656a-471c-8b55-3729d5c5c040",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6301888,
       "lng": -122.3472664
@@ -200,7 +200,7 @@
       "address": "911 1st Ave W #201, Seattle, WA 98119",
       "rent": "$2,200",
       "pets": "allowed",
-      "url": "https://redside.appfolio.com/listings/",
+      "url": "https://redside.appfolio.com/listings/detail/07e600bf-6b4e-4c69-99ce-49769fb73c80",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.62716,
       "lng": -122.3583127
@@ -212,7 +212,7 @@
       "address": "9514 8th Ave NW , Unit 103, Seattle, WA 98117",
       "rent": "$2,250",
       "pets": "unknown",
-      "url": "https://redside.appfolio.com/listings/",
+      "url": "https://redside.appfolio.com/listings/detail/a2a9417d-2671-4d79-8950-1ba84a0bc968",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6983824,
       "lng": -122.3656665
@@ -224,7 +224,7 @@
       "address": "1412 NW 61ST ST #8, Seattle, WA 98107",
       "rent": "$2,295",
       "pets": "allowed",
-      "url": "https://cornellandassociates.appfolio.com/listings/",
+      "url": "https://cornellandassociates.appfolio.com/listings/detail/fc4ce247-73de-4f70-ae4a-0c9e678bb3cc",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6733241,
       "lng": -122.3742895
@@ -236,7 +236,7 @@
       "address": "2114 5th Ave W, Seattle, WA 98119",
       "rent": "$2,995",
       "pets": "allowed",
-      "url": "https://northpacificpm.appfolio.com/listings/",
+      "url": "https://northpacificpm.appfolio.com/listings/detail/7467c321-791f-4382-988b-0af68480847c",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6382231,
       "lng": -122.3633934
@@ -248,7 +248,7 @@
       "address": "1965 12th Avenue West, Unit 302, Seattle, WA 98119",
       "rent": "$3,495",
       "pets": "none",
-      "url": "https://northpacificpm.appfolio.com/listings/",
+      "url": "https://northpacificpm.appfolio.com/listings/detail/3eb47b88-f0fd-4e5e-b3c1-72effc522d2d",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6380624,
       "lng": -122.3731097
@@ -260,7 +260,7 @@
       "address": "1741 NW 58th St, Unit A, Seattle, WA 98107",
       "rent": "$3,900",
       "pets": "none",
-      "url": "https://northpacificpm.appfolio.com/listings/",
+      "url": "https://northpacificpm.appfolio.com/listings/detail/ebb810c9-524a-49d6-bf5f-12482f742ed5",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.670633,
       "lng": -122.3807919
@@ -272,7 +272,7 @@
       "address": "822 6th Ave N  - Unit C, Unit C, Seattle, WA 98109",
       "rent": "$2,800",
       "pets": "unknown",
-      "url": "https://northpacificpm.appfolio.com/listings/",
+      "url": "https://northpacificpm.appfolio.com/listings/detail/798827ec-8c91-439f-8435-e02d4fa0815c",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6374,
       "lng": -122.3572
@@ -284,7 +284,7 @@
       "address": "2244 13th Ave W #215, Seattle, WA 98119",
       "rent": "$2,400",
       "pets": "allowed",
-      "url": "https://ballardpm.appfolio.com/listings/",
+      "url": "https://ballardpm.appfolio.com/listings/detail/f39aff76-ab5f-43cc-bfc6-87828838ec3b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6400535,
       "lng": -122.3733068
@@ -296,7 +296,7 @@
       "address": "6251 8th Ave NW, Seattle, WA 98107",
       "rent": "$3,475",
       "pets": "allowed",
-      "url": "https://ballardpm.appfolio.com/listings/",
+      "url": "https://ballardpm.appfolio.com/listings/detail/977b0d9f-9f4b-42c6-9fa4-ee09d64c2843",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6744253,
       "lng": -122.3663623
@@ -308,7 +308,7 @@
       "address": "6116 22nd Ave NW #3, Seattle, WA 98107",
       "rent": "$3,695",
       "pets": "none",
-      "url": "https://ballardpm.appfolio.com/listings/",
+      "url": "https://ballardpm.appfolio.com/listings/detail/1cf5ff05-b53b-420e-9421-1bc7061284b6",
       "first_seen": "2026-06-19T00:16:56.335337+00:00",
       "lat": 47.673675,
       "lng": -122.384407
@@ -320,7 +320,7 @@
       "address": "469 N 36th St #B , Seattle, WA 98103",
       "rent": "$2,200",
       "pets": "allowed",
-      "url": "https://ballardpm.appfolio.com/listings/",
+      "url": "https://ballardpm.appfolio.com/listings/detail/b8c5b1b8-3809-4210-bae5-71252d7b4e51",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6516655,
       "lng": -122.3526101
@@ -332,7 +332,7 @@
       "address": "824 NW 63rd St , Unit A, Seattle, WA 98107",
       "rent": "$3,795",
       "pets": "allowed",
-      "url": "https://sja.appfolio.com/listings/",
+      "url": "https://sja.appfolio.com/listings/detail/f94658f1-eed9-4b71-a033-98ba7eb4b3c4",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6747108,
       "lng": -122.367099
@@ -344,7 +344,7 @@
       "address": "2645 B NW 57th St, Seattle, WA 98107",
       "rent": "$3,495",
       "pets": "none",
-      "url": "https://sja.appfolio.com/listings/",
+      "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6701748,
       "lng": -122.3748326

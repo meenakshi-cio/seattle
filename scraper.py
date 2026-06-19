@@ -330,7 +330,12 @@ def scrape_appfolio(source_name: str, base_url: str) -> list:
         if not hood:
             continue
 
-        url = LISTING_URL_OVERRIDE.get(source_name, f"{base_url}/listings/")
+        if source_name in LISTING_URL_OVERRIDE:
+            url = LISTING_URL_OVERRIDE[source_name]
+        else:
+            link_el = item.select_one(".js-listing-title a")
+            path    = link_el["href"] if link_el else "/listings/"
+            url     = (base_url + path) if path.startswith("/") else path
 
         rent_el = item.select_one(".js-listing-blurb-rent")
         rent    = rent_el.get_text(strip=True) if rent_el else ""
