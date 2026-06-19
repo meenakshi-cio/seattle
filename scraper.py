@@ -42,7 +42,7 @@ def notify_new_listings(new_listings: list) -> None:
             "transactional_message_id": CIO_MSG_ID,
             "to": NOTIFY_PHONE,
             "identifiers": {"id": "219"},
-            "message_data": {
+            "data": {
                 "neighborhood": l["neighborhood"],
                 "rent": l["rent"],
                 "source": l["source"],
