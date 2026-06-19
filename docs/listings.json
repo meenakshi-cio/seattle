@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T00:16:56.335337+00:00",
+  "updated": "2026-06-19T00:24:19.815024+00:00",
   "listings": [
     {
       "source": "Walls Property Management",
@@ -21,7 +21,7 @@
       "rent": "$2,695",
       "pets": "allowed",
       "url": "https://wallspropmgmt.appfolio.com/listings/detail/1982b4f3-0356-4eb4-a168-72fe03d6c242",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
+      "first_seen": "2026-06-19T00:24:19.815024+00:00",
       "lat": 47.6668248,
       "lng": -122.3805033
     },
@@ -33,7 +33,7 @@
       "rent": "$4,095",
       "pets": "unknown",
       "url": "https://wallspropmgmt.appfolio.com/listings/detail/43cfecce-a3fe-4887-8668-58da18a79a82",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
+      "first_seen": "2026-06-19T00:24:19.815024+00:00",
       "lat": 47.6587313,
       "lng": -122.349879
     },
@@ -105,7 +105,7 @@
       "rent": "$1,975",
       "pets": "allowed",
       "url": "https://wallspropmgmt.appfolio.com/listings/detail/10a1a0a4-e78b-4222-8e0d-e8cd4f5ba17f",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
+      "first_seen": "2026-06-19T00:24:19.815024+00:00",
       "lat": 47.6914134,
       "lng": -122.3536136
     },
@@ -129,9 +129,9 @@
       "rent": "$2,563",
       "pets": "allowed",
       "url": "https://wallspropmgmt.appfolio.com/listings/detail/2388c4c2-a1e4-4835-8cef-20c463ea482e",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6711414,
-      "lng": -122.3899968
+      "first_seen": "2026-06-19T00:24:19.815024+00:00",
+      "lat": 47.6711394,
+      "lng": -122.3899988
     },
     {
       "source": "Walls Property Management",
@@ -274,8 +274,8 @@
       "pets": "none",
       "url": "https://northpacificpm.appfolio.com/listings/detail/ebb810c9-524a-49d6-bf5f-12482f742ed5",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6706332,
-      "lng": -122.3807113
+      "lat": 47.670633,
+      "lng": -122.3807919
     },
     {
       "source": "North Pacific Property Management",
@@ -346,8 +346,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/f94658f1-eed9-4b71-a033-98ba7eb4b3c4",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6747106,
-      "lng": -122.3670507
+      "lat": 47.6747108,
+      "lng": -122.367099
     },
     {
       "source": "SJA Property Management",
