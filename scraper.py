@@ -40,6 +40,7 @@ def notify_new_listings(new_listings: list) -> None:
     for l in new_listings:
         payload = {
             "transactional_message_id": CIO_MSG_ID,
+            "body": f"New Seattle rental in {l['neighborhood']}: {l['rent']} via {l['source']}. Apply: {l['url']}",
             "to": NOTIFY_PHONE,
             "identifiers": {"id": "219"},
             "data": {
