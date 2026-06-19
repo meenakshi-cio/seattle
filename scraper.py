@@ -6,8 +6,8 @@ Scrapes 8 property management companies and writes docs/listings.json,
 which a GitHub Pages site displays with auto-refresh.
 
 Backend breakdown:
-  AppFolio (9 sites): Walls, Redside, Cornell, North Pacific, Madeson,
-                       Ballard Realty, SJA PM, Avenue One, 206 PM
+  AppFolio (10 sites): Walls, Redside, Cornell, North Pacific, Madeson,
+                        Ballard Realty, SJA PM, Avenue One, 206 PM, RPA
   Propertyware (1 site): Maple Leaf Management
 """
 
@@ -125,6 +125,13 @@ HEADERS = {
 
 REQUEST_TIMEOUT = 20
 
+# Public-facing listing pages to use instead of AppFolio detail URLs for sites
+# where direct AppFolio detail links render blank in the browser.
+LISTING_URL_OVERRIDE = {
+    "Walls Property Management": "https://wallspropertymanagement.com/vacancies",
+    "Redside Partners":          "https://www.redsidepartners.com/managed-properties/",
+}
+
 APPFOLIO_SITES = [
     ("Walls Property Management",           "https://wallspropmgmt.appfolio.com"),
     ("Redside Partners",                    "https://redside.appfolio.com"),
@@ -135,6 +142,7 @@ APPFOLIO_SITES = [
     ("SJA Property Management",             "https://sja.appfolio.com"),
     ("Avenue One Residential",              "https://avenueone.appfolio.com"),
     ("206 Property Management",             "https://twozerosixpm.appfolio.com"),
+    ("Real Property Associates",            "https://rpa.appfolio.com"),
 ]
 
 
@@ -326,9 +334,12 @@ def scrape_appfolio(source_name: str, base_url: str) -> list:
         if not hood:
             continue
 
-        link_el = item.select_one(".js-listing-title a")
-        path    = link_el["href"] if link_el else "/listings/"
-        url     = (base_url + path) if path.startswith("/") else path
+        if source_name in LISTING_URL_OVERRIDE:
+            url = LISTING_URL_OVERRIDE[source_name]
+        else:
+            link_el = item.select_one(".js-listing-title a")
+            path    = link_el["href"] if link_el else "/listings/"
+            url     = (base_url + path) if path.startswith("/") else path
 
         rent_el = item.select_one(".js-listing-blurb-rent")
         rent    = rent_el.get_text(strip=True) if rent_el else ""
