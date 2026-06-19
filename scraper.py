@@ -61,10 +61,12 @@ def notify_new_listings(new_listings: list) -> None:
                     "to": NOTIFY_PHONE,
                     "identifiers": {"id": "219"},
                     "message_data": {
-                        "neighborhood": l["neighborhood"],
-                        "rent": l["rent"],
-                        "source": l["source"],
-                        "url": l["url"],
+                        "customer": {
+                            "neighborhood": l["neighborhood"],
+                            "rent": l["rent"],
+                            "source": l["source"],
+                            "url": l["url"],
+                        },
                     },
                 },
                 headers=headers,
