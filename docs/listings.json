@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T22:02:19.905629+00:00",
+  "updated": "2026-06-19T23:13:56.545751+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -82,8 +82,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997057,
-      "lng": -122.3466536
+      "lat": 47.6997077,
+      "lng": -122.3466518
     },
     {
       "source": "SJA Property Management",
@@ -190,8 +190,8 @@
       "pets": "allowed",
       "url": "https://gpsrenting.appfolio.com/listings/detail/d510f311-dd4b-48b3-b3b3-ff0169b2c9c8",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6531928,
-      "lng": -122.3408685
+      "lat": 47.6531166,
+      "lng": -122.3408726
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
