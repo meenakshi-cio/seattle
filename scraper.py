@@ -38,17 +38,33 @@ def notify_new_listings(new_listings: list) -> None:
         return
 
     for l in new_listings:
-        payload = {
-            "transactional_message_id": CIO_MSG_ID,
-            "body": f"New Seattle rental in {l['neighborhood']}: {l['rent']} via {l['source']}. Apply: {l['url']}",
-            "to": NOTIFY_PHONE,
-            "identifiers": {"id": "219"},
-            "data": {
+        # Update profile attributes first so template variables resolve
+        profile_payload = {
+            "attributes": {
                 "neighborhood": l["neighborhood"],
                 "rent": l["rent"],
                 "source": l["source"],
                 "url": l["url"],
-            },
+            }
+        }
+        try:
+            requests.put(
+                "https://api.customer.io/v1/customers/219",
+                json=profile_payload,
+                headers={
+                    "Authorization": f"Bearer {CIO_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                timeout=10,
+            )
+            time.sleep(0.5)
+        except Exception as e:
+            print(f"  [notify] Failed to update profile: {e}")
+
+        payload = {
+            "transactional_message_id": CIO_MSG_ID,
+            "to": NOTIFY_PHONE,
+            "identifiers": {"id": "219"},
         }
         try:
             resp = requests.post(
