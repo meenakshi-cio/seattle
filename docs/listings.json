@@ -1,126 +1,6 @@
 {
-  "updated": "2026-06-19T18:00:04.260910+00:00",
+  "updated": "2026-06-19T19:41:54.624580+00:00",
   "listings": [
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Fremont",
-      "address": "4250 Fremont Ave N - C, Seattle, WA 98103",
-      "rent": "$4,095",
-      "pets": "unknown",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6587313,
-      "lng": -122.349879
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Green Lake",
-      "address": "6840 Oswego Place NE - 306, Seattle, WA 98115",
-      "rent": "$3,695",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6789273,
-      "lng": -122.3230642
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Green Lake",
-      "address": "6840 Oswego Place NE - 303, Seattle, WA 98115",
-      "rent": "$3,395",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6789273,
-      "lng": -122.3230642
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 2,
-      "neighborhood": "Fremont",
-      "address": "4431 Evanston Ave N - 202, Seattle, WA 98103",
-      "rent": "$3,095",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.661158,
-      "lng": -122.3513261
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 2,
-      "neighborhood": "Ballard",
-      "address": "5210 Russell Avenue NW - R-404, Seattle, WA 98107",
-      "rent": "$3,195",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6677,
-      "lng": -122.383
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Ballard",
-      "address": "7522 24th Ave NW - 3, Seattle, WA 98117",
-      "rent": "$3,395",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6838608,
-      "lng": -122.3872467
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "655 Crockett St , #A308, Seattle, WA 98109",
-      "rent": "$3,295",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6370915,
-      "lng": -122.3437999
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Ballard",
-      "address": "7522 24th Ave NW - 4, Seattle, WA 98117",
-      "rent": "$3,395",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6838608,
-      "lng": -122.3872467
-    },
-    {
-      "source": "Redside Partners",
-      "beds": 2,
-      "neighborhood": "Ballard",
-      "address": "2250 NW 59th St - 406, Seattle, WA 98107",
-      "rent": "$3,195",
-      "pets": "unknown",
-      "url": "https://www.redsidepartners.com/managed-properties/",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6718103,
-      "lng": -122.3868262
-    },
-    {
-      "source": "Redside Partners",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "1000 1st Ave W Apt 503, Seattle, WA 98119",
-      "rent": "$3,195",
-      "pets": "allowed",
-      "url": "https://www.redsidepartners.com/managed-properties/",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6280045,
-      "lng": -122.3577195
-    },
     {
       "source": "North Pacific Property Management",
       "beds": 2,
@@ -202,8 +82,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997077,
-      "lng": -122.3466518
+      "lat": 47.6997057,
+      "lng": -122.3466536
     },
     {
       "source": "SJA Property Management",
@@ -226,8 +106,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704334,
-      "lng": -122.40355
+      "lat": 47.6704783,
+      "lng": -122.405115
     },
     {
       "source": "SJA Property Management",
@@ -250,8 +130,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747108,
-      "lng": -122.367099
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "Avenue One Residential",
@@ -310,8 +190,8 @@
       "pets": "allowed",
       "url": "https://gpsrenting.appfolio.com/listings/detail/d510f311-dd4b-48b3-b3b3-ff0169b2c9c8",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6531928,
-      "lng": -122.3408685
+      "lat": 47.6531166,
+      "lng": -122.3408726
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
@@ -346,8 +226,8 @@
       "pets": "none",
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/4ec8f126-4ff5-44f2-9a54-4648eddc9141",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6511061,
-      "lng": -122.3451247
+      "lat": 47.6512028,
+      "lng": -122.3451345
     }
   ]
 }
