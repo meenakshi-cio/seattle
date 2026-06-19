@@ -57,6 +57,7 @@ def notify_new_listings(new_listings: list) -> None:
                 auth=(CIO_SITE_ID, CIO_TRACK_API_KEY),
                 timeout=10,
             )
+            print(f"  [notify] Profile update status: {r.status_code} {r.text[:100]}")
             time.sleep(0.5)
         except Exception as e:
             print(f"  [notify] Failed to update profile: {e}")
