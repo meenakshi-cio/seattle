@@ -6,7 +6,7 @@ Scrapes property management companies and writes docs/listings.json,
 which a GitHub Pages site displays with auto-refresh.
 
 Backend breakdown:
-  AppFolio (13 sites): Walls, Cornell, North Pacific, Madeson,
+  AppFolio (12 sites): Cornell, North Pacific, Madeson,
                         Ballard Realty, SJA PM, Avenue One, 206 PM, RPA,
                         Seattle Rental Group, Lori Gill/Windermere NW,
                         Seattle Home Mgmt, Davis PM, Dwellings Seattle
@@ -137,11 +137,9 @@ REQUEST_TIMEOUT = 20
 # Public-facing listing pages to use instead of AppFolio detail URLs for sites
 # where direct AppFolio detail links render blank in the browser.
 LISTING_URL_OVERRIDE = {
-    "Walls Property Management": "https://wallspropertymanagement.com/vacancies",
 }
 
 APPFOLIO_SITES = [
-    ("Walls Property Management",           "https://wallspropmgmt.appfolio.com"),
     ("Cornell & Associates",                "https://cornellandassociates.appfolio.com"),
     ("North Pacific Property Management",   "https://northpacificpm.appfolio.com"),
     ("Madeson Management",                  "https://madeson.appfolio.com"),
