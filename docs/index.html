@@ -478,14 +478,14 @@
 
   function makeIcon(beds, isNewListing, isSeen) {
     const color  = isSeen ? '#aaa89e' : markerColor(beds);
-    const border = isNewListing && !isSeen ? '#c98a2e' : 'rgba(255,255,255,0.75)';
+    const border = isSeen ? 'none' : (isNewListing ? '#c98a2e' : 'rgba(255,255,255,0.75)');
     const size   = isNewListing && !isSeen ? 16 : 13;
     const opacity = isSeen ? '0.55' : '1';
     return L.divIcon({
       className: '',
       html: `<div style="
         width:${size}px; height:${size}px; border-radius:50%;
-        background:${color}; border:2.5px solid ${border};
+        background:${color}; ${border !== 'none' ? `border:2.5px solid ${border};` : ''}
         box-shadow:0 1px 5px rgba(0,0,0,0.3);
         opacity:${opacity};
       "></div>`,
