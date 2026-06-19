@@ -6,8 +6,8 @@ Scrapes 8 property management companies and writes docs/listings.json,
 which a GitHub Pages site displays with auto-refresh.
 
 Backend breakdown:
-  AppFolio (7 sites): Walls, Redside, Cornell, North Pacific, Madeson,
-                       Ballard Realty, SJA PM
+  AppFolio (9 sites): Walls, Redside, Cornell, North Pacific, Madeson,
+                       Ballard Realty, SJA PM, Avenue One, 206 PM
   Propertyware (1 site): Maple Leaf Management
 """
 
@@ -133,7 +133,14 @@ APPFOLIO_SITES = [
     ("Madeson Management",                  "https://madeson.appfolio.com"),
     ("Ballard Realty",                      "https://ballardpm.appfolio.com"),
     ("SJA Property Management",             "https://sja.appfolio.com"),
+    ("Avenue One Residential",              "https://avenueone.appfolio.com"),
+    ("206 Property Management",             "https://twozerosixpm.appfolio.com"),
 ]
+
+# Override the link shown to users when the AppFolio subdomain isn't the public-facing URL.
+LISTING_URL_OVERRIDE = {
+    "Walls Property Management": "https://wallspropertymanagement.com/vacancies",
+}
 
 # customer_id is the public widget key embedded in each site's HTML.
 PROPERTYWARE_SITES = [
@@ -323,9 +330,7 @@ def scrape_appfolio(source_name: str, base_url: str) -> list:
         if not hood:
             continue
 
-        link_el = item.select_one(".js-listing-title a")
-        path    = link_el["href"] if link_el else "/listings/"
-        url     = (base_url + path) if path.startswith("/") else path
+        url = LISTING_URL_OVERRIDE.get(source_name, f"{base_url}/listings/")
 
         rent_el = item.select_one(".js-listing-blurb-rent")
         rent    = rent_el.get_text(strip=True) if rent_el else ""
