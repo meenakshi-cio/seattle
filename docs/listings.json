@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T04:10:05.690602+00:00",
+  "updated": "2026-06-19T05:20:05.305996+00:00",
   "listings": [
     {
       "source": "Walls Property Management",
@@ -360,6 +360,18 @@
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.6704783,
       "lng": -122.405115
+    },
+    {
+      "source": "Avenue One Residential",
+      "beds": 3,
+      "neighborhood": "Queen Anne",
+      "address": "2567-2569 13th Ave W - 2567.5, Seattle, WA 98119",
+      "rent": "$4,495",
+      "pets": "allowed",
+      "url": "https://avenueone.appfolio.com/listings/detail/ba2739a1-c088-4f1b-91b1-9835409037ea",
+      "first_seen": "2026-06-19T05:20:05.305996+00:00",
+      "lat": 47.6374,
+      "lng": -122.3572
     },
     {
       "source": "Avenue One Residential",
