@@ -2,13 +2,15 @@
 """
 Seattle rental listing monitor.
 
-Scrapes 8 property management companies and writes docs/listings.json,
+Scrapes property management companies and writes docs/listings.json,
 which a GitHub Pages site displays with auto-refresh.
 
 Backend breakdown:
-  AppFolio (10 sites): Walls, Redside, Cornell, North Pacific, Madeson,
-                        Ballard Realty, SJA PM, Avenue One, 206 PM, RPA
+  AppFolio (12 sites): Walls, Redside, Cornell, North Pacific, Madeson,
+                        Ballard Realty, SJA PM, Avenue One, 206 PM, RPA,
+                        Seattle Rental Group, Windermere PM
   Propertyware (1 site): Maple Leaf Management
+  Playwright (1 site):  Doorstead
 """
 
 import json
@@ -22,6 +24,12 @@ from typing import Optional
 
 import requests
 from bs4 import BeautifulSoup
+
+try:
+    from playwright.sync_api import sync_playwright
+    PLAYWRIGHT_AVAILABLE = True
+except ImportError:
+    PLAYWRIGHT_AVAILABLE = False
 
 # ---------------------------------------------------------------------------
 # Customer.io transactional email notification
@@ -143,6 +151,8 @@ APPFOLIO_SITES = [
     ("Avenue One Residential",              "https://avenueone.appfolio.com"),
     ("206 Property Management",             "https://twozerosixpm.appfolio.com"),
     ("Real Property Associates",            "https://rpa.appfolio.com"),
+    ("Seattle Rental Group",                "https://gpsrenting.appfolio.com"),
+    ("Windermere Property Management",      "https://windermerepropertymgmt.appfolio.com"),
 ]
 
 
@@ -284,12 +294,24 @@ def extract_beds_int(value) -> Optional[int]:
         return None
 
 
+ZIP_TO_NEIGHBORHOOD = {
+    "98107": "Ballard",
+    "98117": "Ballard",
+    "98109": "Queen Anne",
+    "98119": "Queen Anne",
+    "98103": "Fremont",
+    "98115": "Green Lake",
+}
+
+
 def neighborhood_match(text: str) -> Optional[str]:
     lower = text.lower()
     for n in TARGET_NEIGHBORHOODS:
         if n in lower:
-            # Canonical display name
             return {"phinney": "Phinney Ridge"}.get(n, n.title())
+    for zip_code, hood in ZIP_TO_NEIGHBORHOOD.items():
+        if zip_code in text:
+            return hood
     return None
 
 
@@ -489,7 +511,7 @@ def git_push(new_count: int) -> None:
             print("  [git] Not a git repo — skipping push.")
             return
 
-        subprocess.run(["git", "add", "docs/listings.json"], cwd=REPO_ROOT, check=True)
+        subprocess.run(["git", "add", "docs/listings.json", "seen_listings.json"], cwd=REPO_ROOT, check=True)
 
         diff = subprocess.run(
             ["git", "diff", "--cached", "--quiet"],
@@ -505,6 +527,82 @@ def git_push(new_count: int) -> None:
         print("  [git] Pushed listings.json to GitHub.")
     except subprocess.CalledProcessError as e:
         print(f"  [git] Push failed: {e}")
+
+
+# ---------------------------------------------------------------------------
+# Doorstead (Playwright — React SPA with GraphQL auth)
+# ---------------------------------------------------------------------------
+
+DOORSTEAD_URL = "https://tenants.doorstead.com/listings"
+
+def scrape_doorstead() -> list:
+    if not PLAYWRIGHT_AVAILABLE:
+        print("    → SKIP: playwright not installed (pip install playwright && playwright install chromium)")
+        return []
+
+    results = []
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        page.goto(DOORSTEAD_URL, wait_until="networkidle", timeout=30000)
+
+        # Wait for listing cards to appear
+        try:
+            page.wait_for_selector("[data-testid='listing-card'], .listing-card, article", timeout=15000)
+        except Exception:
+            pass
+
+        html = page.content()
+        browser.close()
+
+    soup = BeautifulSoup(html, "lxml")
+
+    # Doorstead renders each listing as a card — extract address, beds, rent, and link.
+    # The selectors below match the React-rendered DOM as of mid-2025; adjust if they break.
+    cards = (
+        soup.select("[data-testid='listing-card']")
+        or soup.select("a[href*='/listings/']")
+    )
+
+    for card in cards:
+        # Address: usually an <h2> or <p> inside the card
+        addr_el = card.select_one("h2, h3, [class*='address'], [class*='Address']")
+        addr = addr_el.get_text(strip=True) if addr_el else ""
+
+        hood = neighborhood_match(addr)
+        if not hood:
+            continue
+
+        # Beds: look for "X bd" pattern
+        text = card.get_text(" ", strip=True)
+        beds_match = re.search(r"(\d+)\s*(?:bd|bed|BR)", text, re.I)
+        if not beds_match:
+            continue
+        beds = int(beds_match.group(1))
+        if beds not in TARGET_BEDS:
+            continue
+
+        # Rent: look for "$X,XXX" pattern
+        rent_match = re.search(r"\$[\d,]+", text)
+        rent = rent_match.group(0) if rent_match else ""
+
+        # URL: card itself or nearest <a>
+        href = card.get("href") or (card.find("a") or {}).get("href", "")
+        if href and not href.startswith("http"):
+            href = "https://tenants.doorstead.com" + href
+        url = href or DOORSTEAD_URL
+
+        results.append({
+            "source":       "Doorstead",
+            "beds":         beds,
+            "neighborhood": hood,
+            "address":      addr,
+            "rent":         rent,
+            "pets":         "unknown",
+            "url":          url,
+        })
+
+    return results
 
 
 # ---------------------------------------------------------------------------
@@ -546,6 +644,14 @@ def main() -> None:
             print(f"    → ERROR: {e}")
         time.sleep(1.5)
 
+    print(f"\n  Scraping Doorstead …")
+    try:
+        results = scrape_doorstead()
+        print(f"    → {len(results)} matching listing(s)")
+        all_found.extend(results)
+    except Exception as e:
+        print(f"    → ERROR: {e}")
+
     # ── Merge with seen timestamps + geocode ─────────────────────────────
     new_count = 0
     listings_with_meta = []
@@ -568,7 +674,14 @@ def main() -> None:
     save_geocache(geocache)
 
     # ── Notify + write JSON + push ────────────────────────────────────────
-    new_listings = [l for l in listings_with_meta if l["first_seen"] == now_iso]
+    def _rent_int(rent_str: str) -> int:
+        try:
+            return int(rent_str.replace("$", "").replace(",", "").split("/")[0].split("-")[0].strip())
+        except (ValueError, AttributeError):
+            return 0
+
+    listings_with_meta = [l for l in listings_with_meta if _rent_int(l.get("rent", "0")) >= 3000]
+    new_listings = [l for l in listings_with_meta if l["first_seen"] == now_iso and l.get("pets") != "none"]
     notify_new_listings(new_listings)
     write_listings_json(listings_with_meta, now_iso)
     git_push(new_count)

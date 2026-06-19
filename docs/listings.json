@@ -39,18 +39,6 @@
     },
     {
       "source": "Walls Property Management",
-      "beds": 2,
-      "neighborhood": "Ballard",
-      "address": "2237 NW 59th - 7, Seattle, WA 98107",
-      "rent": "$2,275",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6714379,
-      "lng": -122.3864192
-    },
-    {
-      "source": "Walls Property Management",
       "beds": 3,
       "neighborhood": "Ballard",
       "address": "7522 24th Ave NW - 3, Seattle, WA 98117",
@@ -75,18 +63,6 @@
     },
     {
       "source": "Walls Property Management",
-      "beds": 2,
-      "neighborhood": "Phinney Ridge",
-      "address": "8524 Phinney Avenue N  - 7, Seattle, WA 98103",
-      "rent": "$1,975",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6914134,
-      "lng": -122.3536136
-    },
-    {
-      "source": "Walls Property Management",
       "beds": 3,
       "neighborhood": "Ballard",
       "address": "7522 24th Ave NW - 4, Seattle, WA 98117",
@@ -96,126 +72,6 @@
       "first_seen": "2026-06-19T14:16:44.049254+00:00",
       "lat": 47.6838608,
       "lng": -122.3872467
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Ballard",
-      "address": "5820 26th Ave NW, Seattle, WA 98107",
-      "rent": "$2,563",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6711394,
-      "lng": -122.3899988
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Phinney Ridge",
-      "address": "8732 Phinney Avenue N - 201, Seattle, WA 98103",
-      "rent": "$2,595",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6933816,
-      "lng": -122.3536247
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 2,
-      "neighborhood": "Wallingford",
-      "address": "4314 Winslow Pl N Apt 203, Seattle, WA 98103-7355",
-      "rent": "$2,345",
-      "pets": "unknown",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6600056,
-      "lng": -122.3463578
-    },
-    {
-      "source": "Walls Property Management",
-      "beds": 3,
-      "neighborhood": "Ballard",
-      "address": "2237 NW 59th - 2, Seattle, WA 98107",
-      "rent": "$2,895",
-      "pets": "allowed",
-      "url": "https://wallspropertymanagement.com/vacancies",
-      "first_seen": "2026-06-19T14:16:44.049254+00:00",
-      "lat": 47.6714379,
-      "lng": -122.3864192
-    },
-    {
-      "source": "Redside Partners",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "1700  Taylor Ave N #201, Seattle, WA 98109",
-      "rent": "$2,195",
-      "pets": "allowed",
-      "url": "https://www.redsidepartners.com/managed-properties/",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.634352,
-      "lng": -122.3462097
-    },
-    {
-      "source": "Redside Partners",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "1212 5th Ave. N. - 102, Seattle, WA 98109",
-      "rent": "$2,300",
-      "pets": "allowed",
-      "url": "https://www.redsidepartners.com/managed-properties/",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6301888,
-      "lng": -122.3472664
-    },
-    {
-      "source": "Redside Partners",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "1212 5th Ave. N. - 2, Seattle, WA 98109",
-      "rent": "$2,200",
-      "pets": "allowed",
-      "url": "https://www.redsidepartners.com/managed-properties/",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6301888,
-      "lng": -122.3472664
-    },
-    {
-      "source": "Redside Partners",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "911 1st Ave W #201, Seattle, WA 98119",
-      "rent": "$2,200",
-      "pets": "allowed",
-      "url": "https://www.redsidepartners.com/managed-properties/",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.62716,
-      "lng": -122.3583127
-    },
-    {
-      "source": "Redside Partners",
-      "beds": 2,
-      "neighborhood": "Ballard",
-      "address": "9514 8th Ave NW , Unit 103, Seattle, WA 98117",
-      "rent": "$2,250",
-      "pets": "unknown",
-      "url": "https://www.redsidepartners.com/managed-properties/",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6983824,
-      "lng": -122.3656665
-    },
-    {
-      "source": "Cornell & Associates",
-      "beds": 2,
-      "neighborhood": "Ballard",
-      "address": "1412 NW 61ST ST #8, Seattle, WA 98107",
-      "rent": "$2,295",
-      "pets": "allowed",
-      "url": "https://cornellandassociates.appfolio.com/listings/detail/fc4ce247-73de-4f70-ae4a-0c9e678bb3cc",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6733241,
-      "lng": -122.3742895
     },
     {
       "source": "North Pacific Property Management",
@@ -242,30 +98,6 @@
       "lng": -122.3807919
     },
     {
-      "source": "North Pacific Property Management",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "822 6th Ave N  - Unit C, Unit C, Seattle, WA 98109",
-      "rent": "$2,800",
-      "pets": "unknown",
-      "url": "https://northpacificpm.appfolio.com/listings/detail/798827ec-8c91-439f-8435-e02d4fa0815c",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6374,
-      "lng": -122.3572
-    },
-    {
-      "source": "Ballard Realty",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "2244 13th Ave W #215, Seattle, WA 98119",
-      "rent": "$2,400",
-      "pets": "allowed",
-      "url": "https://ballardpm.appfolio.com/listings/detail/f39aff76-ab5f-43cc-bfc6-87828838ec3b",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6400535,
-      "lng": -122.3733068
-    },
-    {
       "source": "Ballard Realty",
       "beds": 3,
       "neighborhood": "Ballard",
@@ -288,18 +120,6 @@
       "first_seen": "2026-06-19T00:16:56.335337+00:00",
       "lat": 47.673675,
       "lng": -122.384407
-    },
-    {
-      "source": "Ballard Realty",
-      "beds": 3,
-      "neighborhood": "Fremont",
-      "address": "469 N 36th St #B , Seattle, WA 98103",
-      "rent": "$2,200",
-      "pets": "allowed",
-      "url": "https://ballardpm.appfolio.com/listings/detail/b8c5b1b8-3809-4210-bae5-71252d7b4e51",
-      "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6516655,
-      "lng": -122.3526101
     },
     {
       "source": "SJA Property Management",
@@ -360,42 +180,6 @@
       "first_seen": "2026-06-19T03:26:55.815872+00:00",
       "lat": 47.6597637,
       "lng": -122.345439
-    },
-    {
-      "source": "Real Property Associates",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "845 W Nickerson Street Unit 4, Seattle, WA 98119",
-      "rent": "$2,195",
-      "pets": "none",
-      "url": "https://rpa.appfolio.com/listings/detail/60205009-e68e-4178-bc57-f58f9df8b9fc",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6530956,
-      "lng": -122.3692009
-    },
-    {
-      "source": "Real Property Associates",
-      "beds": 2,
-      "neighborhood": "Queen Anne",
-      "address": "1800 Taylor Ave N , Apt 10, Seattle, WA 98109",
-      "rent": "$2,250",
-      "pets": "none",
-      "url": "https://rpa.appfolio.com/listings/detail/415b39b1-d728-4e94-8751-23c7a1fe6b5f",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6353959,
-      "lng": -122.3456202
-    },
-    {
-      "source": "Real Property Associates",
-      "beds": 2,
-      "neighborhood": "Wallingford",
-      "address": "4422 Latona Ave NE - Upper, Seattle, WA 98105",
-      "rent": "$2,195",
-      "pets": "none",
-      "url": "https://rpa.appfolio.com/listings/detail/8f40ce5e-f47c-424a-919d-187b80cb21a4",
-      "first_seen": "2026-06-19T03:26:55.815872+00:00",
-      "lat": 47.6609291,
-      "lng": -122.3248149
     }
   ]
 }
