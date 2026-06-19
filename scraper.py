@@ -27,10 +27,13 @@ from bs4 import BeautifulSoup
 # Customer.io transactional email notification
 # ---------------------------------------------------------------------------
 
-CIO_API_KEY   = os.environ.get("CIO_APP_API_KEY", "")
-NOTIFY_PHONE  = "+19703339757"
-CIO_SEND_URL  = "https://api.customer.io/v1/send/sms"
-CIO_MSG_ID    = 2
+CIO_API_KEY       = os.environ.get("CIO_APP_API_KEY", "")
+CIO_SITE_ID       = os.environ.get("CIO_SITE_ID", "")
+CIO_TRACK_API_KEY = os.environ.get("CIO_TRACK_API_KEY", "")
+NOTIFY_PHONE      = "+19703339757"
+NOTIFY_EMAIL      = "meenakshi.sharma@customer.io"
+CIO_SEND_URL      = "https://api.customer.io/v1/send/sms"
+CIO_MSG_ID        = 2
 
 
 def notify_new_listings(new_listings: list) -> None:
@@ -49,12 +52,9 @@ def notify_new_listings(new_listings: list) -> None:
         }
         try:
             requests.put(
-                "https://api.customer.io/v1/customers/meenakshi.sharma%40customer.io",
-                json=profile_payload,
-                headers={
-                    "Authorization": f"Bearer {CIO_API_KEY}",
-                    "Content-Type": "application/json",
-                },
+                f"https://track.customer.io/api/v1/customers/{NOTIFY_EMAIL}",
+                json={"attributes": profile_payload["attributes"]},
+                auth=(CIO_SITE_ID, CIO_TRACK_API_KEY),
                 timeout=10,
             )
             time.sleep(0.5)
