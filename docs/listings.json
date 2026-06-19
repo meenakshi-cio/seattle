@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T00:13:01.196081+00:00",
+  "updated": "2026-06-19T00:16:56.335337+00:00",
   "listings": [
     {
       "source": "Walls Property Management",
@@ -321,7 +321,7 @@
       "rent": "$3,695",
       "pets": "none",
       "url": "https://ballardpm.appfolio.com/listings/detail/1cf5ff05-b53b-420e-9421-1bc7061284b6",
-      "first_seen": "2026-06-19T00:13:01.196081+00:00",
+      "first_seen": "2026-06-19T00:16:56.335337+00:00",
       "lat": 47.673675,
       "lng": -122.384407
     },
@@ -346,8 +346,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/f94658f1-eed9-4b71-a033-98ba7eb4b3c4",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6747108,
-      "lng": -122.367099
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "SJA Property Management",
@@ -358,8 +358,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6701938,
-      "lng": -122.396032
+      "lat": 47.6704334,
+      "lng": -122.40355
     }
   ]
 }
