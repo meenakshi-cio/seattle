@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T00:09:27.749503+00:00",
+  "updated": "2026-06-19T00:13:01.196081+00:00",
   "listings": [
     {
       "source": "Walls Property Management",
@@ -130,8 +130,8 @@
       "pets": "allowed",
       "url": "https://wallspropmgmt.appfolio.com/listings/detail/2388c4c2-a1e4-4835-8cef-20c463ea482e",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6711394,
-      "lng": -122.3899988
+      "lat": 47.6711414,
+      "lng": -122.3899968
     },
     {
       "source": "Walls Property Management",
@@ -274,8 +274,8 @@
       "pets": "none",
       "url": "https://northpacificpm.appfolio.com/listings/detail/ebb810c9-524a-49d6-bf5f-12482f742ed5",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.670633,
-      "lng": -122.3807919
+      "lat": 47.6706332,
+      "lng": -122.3807113
     },
     {
       "source": "North Pacific Property Management",
@@ -321,7 +321,7 @@
       "rent": "$3,695",
       "pets": "none",
       "url": "https://ballardpm.appfolio.com/listings/detail/1cf5ff05-b53b-420e-9421-1bc7061284b6",
-      "first_seen": "2026-06-19T00:09:27.749503+00:00",
+      "first_seen": "2026-06-19T00:13:01.196081+00:00",
       "lat": 47.673675,
       "lng": -122.384407
     },
@@ -358,8 +358,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704334,
-      "lng": -122.40355
+      "lat": 47.6701938,
+      "lng": -122.396032
     }
   ]
 }
