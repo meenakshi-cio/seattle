@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T23:13:56.545751+00:00",
+  "updated": "2026-06-20T01:29:25.807804+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -82,8 +82,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997077,
-      "lng": -122.3466518
+      "lat": 47.6997057,
+      "lng": -122.3466536
     },
     {
       "source": "SJA Property Management",
@@ -130,8 +130,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747106,
-      "lng": -122.3670507
+      "lat": 47.6747108,
+      "lng": -122.367099
     },
     {
       "source": "Avenue One Residential",
@@ -170,18 +170,6 @@
       "lng": -122.345439
     },
     {
-      "source": "Real Property Associates",
-      "beds": 3,
-      "neighborhood": "Ballard",
-      "address": "8314 14th Ave NW , Unit A, Seattle, WA 98117",
-      "rent": "$4,450",
-      "pets": "allowed",
-      "url": "https://rpa.appfolio.com/listings/detail/f99d90b9-53fc-47ac-a137-f18d28dbd50a",
-      "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6893264,
-      "lng": -122.3735819
-    },
-    {
       "source": "Seattle Rental Group",
       "beds": 3,
       "neighborhood": "Fremont",
@@ -192,6 +180,18 @@
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
       "lat": 47.6531166,
       "lng": -122.3408726
+    },
+    {
+      "source": "Lori Gill & Associates (Windermere)",
+      "beds": 3,
+      "neighborhood": "Green Lake",
+      "address": "6546B 32nd Avenue NE, Seattle, WA 98115",
+      "rent": "$4,495",
+      "pets": "none",
+      "url": "https://wpmnorthwest.appfolio.com/listings/detail/cb9ede20-c3ce-4386-a538-a5944d6cc371",
+      "first_seen": "2026-06-20T01:29:25.807804+00:00",
+      "lat": 47.7157411,
+      "lng": -122.2940574
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
