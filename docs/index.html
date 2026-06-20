@@ -421,22 +421,6 @@
     }
     .popup-link:hover { background: var(--rust); color: #fff; }
 
-    /* ── Refresh pill ── */
-    #refresh-pill {
-      position: absolute;
-      bottom: 212px;
-      right: 12px;
-      z-index: 1000;
-      font-family: var(--sans);
-      font-size: 0.68rem;
-      color: var(--muted);
-      background: var(--cream);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.65rem;
-      border-radius: 999px;
-      box-shadow: var(--shadow);
-    }
-    #refresh-pill span { color: var(--ink-mid); font-weight: 600; }
 
     /* ── Legend ── */
     #legend {
@@ -498,7 +482,6 @@
 
   <div style="position:relative; overflow:hidden; min-height:0;">
     <div id="map" style="position:absolute; inset:0;"></div>
-    <div id="refresh-pill">Refresh in <span id="countdown">5:00</span></div>
     <div id="legend">
       <div class="legend-row"><span class="legend-dot" style="background:#5b8fa8"></span>2 Bedroom</div>
       <div class="legend-row"><span class="legend-dot" style="background:#b85c38"></span>3 Bedroom</div>
@@ -515,7 +498,6 @@
 </div>
 
 <script>
-  const REFRESH_MS  = 5 * 60 * 1000;
   const NEW_HOURS   = 24;
   const DATA_URL    = 'listings.json';
 
@@ -788,7 +770,6 @@
     const listings = data.listings || [];
     document.getElementById('stat-total').textContent = listings.length;
     document.getElementById('stat-new').textContent   = listings.filter(l => isNew(l.first_seen)).length;
-
     if (data.updated) {
       const mins = (Date.now() - new Date(data.updated).getTime()) / 60000;
       document.getElementById('updated-text').textContent =
@@ -836,16 +817,6 @@
     render();
   });
 
-  // ── Countdown ──────────────────────────────────────────────────────────
-
-  let remaining = REFRESH_MS;
-  setInterval(() => {
-    remaining -= 1000;
-    if (remaining <= 0) { remaining = REFRESH_MS; refresh(); }
-    const m = Math.floor(remaining / 60000);
-    const s = Math.floor((remaining % 60000) / 1000);
-    document.getElementById('countdown').textContent = `${m}:${s.toString().padStart(2,'0')}`;
-  }, 1000);
 
   // ── View toggle ────────────────────────────────────────────────────────
 
