@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T20:21:46.415497+00:00",
+  "updated": "2026-06-21T21:52:07.343982+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -22,8 +22,8 @@
       "pets": "none",
       "url": "https://northpacificpm.appfolio.com/listings/detail/ebb810c9-524a-49d6-bf5f-12482f742ed5",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.670633,
-      "lng": -122.3807919
+      "lat": 47.6706332,
+      "lng": -122.3807113
     },
     {
       "source": "Ballard Realty",
@@ -82,8 +82,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997077,
-      "lng": -122.3466518
+      "lat": 47.6997057,
+      "lng": -122.3466536
     },
     {
       "source": "SJA Property Management",
@@ -106,8 +106,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704783,
-      "lng": -122.405115
+      "lat": 47.6704334,
+      "lng": -122.40355
     },
     {
       "source": "SJA Property Management",
@@ -130,8 +130,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747108,
-      "lng": -122.367099
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "Avenue One Residential",
@@ -190,8 +190,8 @@
       "pets": "none",
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/cb9ede20-c3ce-4386-a538-a5944d6cc371",
       "first_seen": "2026-06-20T01:29:25.807804+00:00",
-      "lat": 47.7183373,
-      "lng": -122.2939478
+      "lat": 47.7157411,
+      "lng": -122.2940574
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
