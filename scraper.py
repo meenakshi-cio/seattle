@@ -61,7 +61,7 @@ def notify_new_listings(new_listings: list) -> None:
                     "transactional_message_id": CIO_MSG_ID,
                     "to": NOTIFY_PHONE,
                     "identifiers": {"id": "219"},
-                    "customer": {
+                    "message_data": {
                         "neighborhood": l.get("neighborhood", ""),
                         "rent": l.get("rent", ""),
                         "source": l.get("source", ""),
