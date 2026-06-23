@@ -2,9 +2,13 @@ name: Scrape listings
 
 on:
   schedule:
-    - cron: "*/15 15-17 * * *"  # every 15 min, 8–11am PT (15–17 UTC)
-    - cron: "0,30 18-21 * * *"  # every 30 min, 11am–3pm PT (18–21 UTC)
-    - cron: "0 0-14,22,23 * * *" # every hour, 3pm–8am PT (22–14 UTC)
+    - cron: "45 16 * * *"        # 9:45am PT — early catch before 10am wave
+    - cron: "*/10 17 * * *"     # every 10 min, 10–11am PT (peak)
+    - cron: "45 21 * * *"       # 2:45pm PT — early catch before 3pm wave
+    - cron: "*/10 22 * * *"     # every 10 min, 3–4pm PT (peak)
+    - cron: "30,45 2 * * *"     # 7:30 & 7:45pm PT — evening bump
+    - cron: "*/15 3 * * *"      # every 15 min, 8–9pm PT (evening bump)
+    - cron: "0 */2 * * *"       # every 2 hours all other times
   workflow_dispatch:
 
 concurrency:
