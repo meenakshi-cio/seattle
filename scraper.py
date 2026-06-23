@@ -53,7 +53,30 @@ def notify_new_listings(new_listings: list) -> None:
         "Content-Type": "application/json",
     }
 
+    import base64
+    encoded = base64.b64encode(f"{CIO_PIPELINES_API_KEY}:".encode()).decode()
+    identify_headers = {"Authorization": f"Basic {encoded}", "Content-Type": "application/json"}
+
     for l in new_listings:
+        try:
+            requests.post(
+                "https://cdp.customer.io/v1/identify",
+                json={
+                    "userId": "meenakshi.sharma@customer.io",
+                    "traits": {
+                        "neighborhood": l["neighborhood"],
+                        "rent": l["rent"],
+                        "source": l["source"],
+                        "url": l["url"],
+                    },
+                },
+                headers=identify_headers,
+                timeout=10,
+            )
+            time.sleep(2)
+        except Exception as e:
+            print(f"  [notify] Failed to update profile: {e}")
+
         try:
             resp = requests.post(
                 CIO_SEND_URL,
@@ -61,14 +84,6 @@ def notify_new_listings(new_listings: list) -> None:
                     "transactional_message_id": CIO_MSG_ID,
                     "to": NOTIFY_PHONE,
                     "identifiers": {"id": "219"},
-                    "message_data": {
-                        "customer": {
-                            "neighborhood": l["neighborhood"],
-                            "rent": l["rent"],
-                            "source": l["source"],
-                            "url": l["url"],
-                        },
-                    },
                 },
                 headers=headers,
                 timeout=10,
