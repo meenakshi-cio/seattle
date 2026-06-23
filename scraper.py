@@ -59,18 +59,17 @@ def notify_new_listings(new_listings: list) -> None:
 
     for l in new_listings:
         try:
-            r = requests.post(
-                "https://cdp.customer.io/v1/identify",
+            r = requests.patch(
+                "https://api.customer.io/v1/customers/219",
                 json={
-                    "userId": "meenakshi.sharma@customer.io",
-                    "traits": {
+                    "attributes": {
                         "neighborhood": l["neighborhood"],
                         "rent": l["rent"],
                         "source": l["source"],
                         "url": l["url"],
-                    },
+                    }
                 },
-                headers=identify_headers,
+                headers=headers,
                 timeout=10,
             )
             print(f"  [notify] Identify {r.status_code}: {r.text[:200]}")
