@@ -6,10 +6,11 @@ Scrapes property management companies and writes docs/listings.json,
 which a GitHub Pages site displays with auto-refresh.
 
 Backend breakdown:
-  AppFolio (12 sites): Cornell, North Pacific, Madeson,
+  AppFolio (16 sites): Cornell, North Pacific, Madeson,
                         Ballard Realty, SJA PM, Avenue One, 206 PM, RPA,
                         Seattle Rental Group, Lori Gill/Windermere NW,
-                        Seattle Home Mgmt, Davis PM, Dwellings Seattle
+                        Seattle Home Mgmt, Davis PM, Dwellings Seattle,
+                        Haven PM, Acres PM, Apple PM, Sagen Group
   Propertyware (1 site): Maple Leaf Management
   Playwright (1 site):  Doorstead
 """
@@ -139,6 +140,10 @@ APPFOLIO_SITES = [
     ("Seattle Home Management",            "https://metropolitanrealty.appfolio.com"),
     ("Davis Property Management",          "https://davis.appfolio.com"),
     ("Dwellings Seattle",                  "https://yourseattlehometeam.appfolio.com"),
+    ("Haven Property Management",          "https://haven.appfolio.com"),
+    ("Acres Property Management",          "https://acrespm.appfolio.com"),
+    ("Apple Property Management",          "https://applepm.appfolio.com"),
+    ("Sagen Group Property Management",    "https://sagenmgmt.appfolio.com"),
 ]
 
 
