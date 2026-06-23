@@ -53,31 +53,7 @@ def notify_new_listings(new_listings: list) -> None:
         "Content-Type": "application/json",
     }
 
-    import base64
-    encoded = base64.b64encode(f"{CIO_PIPELINES_API_KEY}:".encode()).decode()
-    identify_headers = {"Authorization": f"Basic {encoded}", "Content-Type": "application/json"}
-
     for l in new_listings:
-        try:
-            r = requests.patch(
-                "https://api.customer.io/v1/customers/219",
-                json={
-                    "attributes": {
-                        "neighborhood": l["neighborhood"],
-                        "rent": l["rent"],
-                        "source": l["source"],
-                        "url": l["url"],
-                    }
-                },
-                headers=headers,
-                timeout=10,
-            )
-            print(f"  [notify] Identify {r.status_code}: {r.text[:200]}")
-            time.sleep(5)
-        except Exception as e:
-            print(f"  [notify] Identify failed: {e}")
-            continue
-
         try:
             resp = requests.post(
                 CIO_SEND_URL,
@@ -85,6 +61,12 @@ def notify_new_listings(new_listings: list) -> None:
                     "transactional_message_id": CIO_MSG_ID,
                     "to": NOTIFY_PHONE,
                     "identifiers": {"id": "219"},
+                    "customer": {
+                        "neighborhood": l.get("neighborhood", ""),
+                        "rent": l.get("rent", ""),
+                        "source": l.get("source", ""),
+                        "url": l.get("url", ""),
+                    },
                 },
                 headers=headers,
                 timeout=10,
