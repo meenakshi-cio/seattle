@@ -90,6 +90,14 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
+    .stat-pill.active {
+      background: rgba(201,138,46,0.18);
+      border-radius: 6px;
+      padding: 2px 7px;
+      outline: 1px solid #c98a2e;
+    }
+    .stat-pill.active .n { color: #e8a030; }
+    .stat-pill.active .lbl { color: #c98a2e; }
     #updated-text {
       font-family: var(--sans);
       font-size: 0.72rem;
@@ -452,7 +460,7 @@
     <h1>Seattle Rentals &nbsp;<em>2–3 BR Watch</em></h1>
     <div class="header-right">
       <div class="stat-pill"><span class="n" id="stat-total">—</span><span class="lbl">listings</span></div>
-      <div class="stat-pill"><span class="n" id="stat-new">—</span><span class="lbl">new today</span></div>
+      <div class="stat-pill" id="stat-new-pill" title="Click to filter new today" style="cursor:pointer"><span class="n" id="stat-new">—</span><span class="lbl">new today</span></div>
       <span id="updated-text">Loading…</span>
     </div>
   </div>
@@ -811,11 +819,15 @@
     });
   });
 
-  document.getElementById('chip-new').addEventListener('click', () => {
+  function toggleNew() {
     activeNew = !activeNew;
     document.getElementById('chip-new').classList.toggle('active', activeNew);
+    document.getElementById('stat-new-pill').classList.toggle('active', activeNew);
     render();
-  });
+  }
+
+  document.getElementById('chip-new').addEventListener('click', toggleNew);
+  document.getElementById('stat-new-pill').addEventListener('click', toggleNew);
 
 
   // ── View toggle ────────────────────────────────────────────────────────
