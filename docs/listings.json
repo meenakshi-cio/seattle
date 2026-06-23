@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T20:33:22.868825+00:00",
+  "updated": "2026-06-23T21:46:22.430604+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -24,6 +24,18 @@
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
       "lat": 47.670633,
       "lng": -122.3807919
+    },
+    {
+      "source": "Ballard Realty",
+      "beds": 2,
+      "neighborhood": "Ballard",
+      "address": "3215 NW 61st, Seattle, WA 98107",
+      "rent": "$3,860",
+      "pets": "allowed",
+      "url": "https://ballardpm.appfolio.com/listings/detail/cbb8388f-5e09-4db4-ba74-ef41ab17d555",
+      "first_seen": "2026-06-23T21:46:22.430604+00:00",
+      "lat": 47.6727696,
+      "lng": -122.398893
     },
     {
       "source": "Ballard Realty",
@@ -94,8 +106,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704783,
-      "lng": -122.405115
+      "lat": 47.6704334,
+      "lng": -122.40355
     },
     {
       "source": "SJA Property Management",
@@ -106,8 +118,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/a333a898-a3b5-4323-a329-94015f79c63d",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6567623,
-      "lng": -122.3235059
+      "lat": 47.6740696,
+      "lng": -122.3234246
     },
     {
       "source": "SJA Property Management",
@@ -118,8 +130,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747108,
-      "lng": -122.367099
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "Avenue One Residential",
@@ -190,8 +202,8 @@
       "pets": "allowed",
       "url": "https://rpa.appfolio.com/listings/detail/1899bdd4-3adf-40d8-8e6a-ea61b8b2cbc8",
       "first_seen": "2026-06-22T21:58:35.428462+00:00",
-      "lat": 47.6742767,
-      "lng": -122.3826648
+      "lat": 47.6742845,
+      "lng": -122.3826764
     },
     {
       "source": "Seattle Rental Group",
@@ -226,8 +238,8 @@
       "pets": "none",
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/cb9ede20-c3ce-4386-a538-a5944d6cc371",
       "first_seen": "2026-06-20T01:29:25.807804+00:00",
-      "lat": 47.7183373,
-      "lng": -122.2939478
+      "lat": 47.7157411,
+      "lng": -122.2940574
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
@@ -250,8 +262,8 @@
       "pets": "none",
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/4ec8f126-4ff5-44f2-9a54-4648eddc9141",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6512028,
-      "lng": -122.3451345
+      "lat": 47.6511061,
+      "lng": -122.3451247
     },
     {
       "source": "Pacific Crest Real Estate",
