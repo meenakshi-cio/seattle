@@ -55,6 +55,11 @@ def notify_new_listings(new_listings: list) -> None:
 
     for l in new_listings:
         try:
+            body = (
+                f"New Seattle rental in {l.get('neighborhood', '')}: "
+                f"{l.get('rent', '')} via {l.get('source', '')}. "
+                f"Apply: {l.get('url', '')}"
+            )
             resp = requests.post(
                 CIO_SEND_URL,
                 json={
@@ -67,6 +72,7 @@ def notify_new_listings(new_listings: list) -> None:
                         "source": l.get("source", ""),
                         "url": l.get("url", ""),
                     },
+                    "body": body,
                 },
                 headers=headers,
                 timeout=10,
