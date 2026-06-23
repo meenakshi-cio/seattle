@@ -60,12 +60,14 @@ def notify_new_listings(new_listings: list) -> None:
                 json={
                     "transactional_message_id": CIO_MSG_ID,
                     "to": NOTIFY_PHONE,
-                    "identifiers": {"id": "219"},
-                    "customer": {
-                        "neighborhood": l["neighborhood"],
-                        "rent": l["rent"],
-                        "source": l["source"],
-                        "url": l["url"],
+                    "identifiers": {
+                        "id": "219",
+                        "attributes": {
+                            "neighborhood": l["neighborhood"],
+                            "rent": l["rent"],
+                            "source": l["source"],
+                            "url": l["url"],
+                        },
                     },
                 },
                 headers=headers,
