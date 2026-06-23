@@ -144,6 +144,7 @@ APPFOLIO_SITES = [
     ("Acres Property Management",          "https://acrespm.appfolio.com"),
     ("Apple Property Management",          "https://applepm.appfolio.com"),
     ("Sagen Group Property Management",    "https://sagenmgmt.appfolio.com"),
+    ("Pacific Crest Real Estate",          "https://pacificcrest.appfolio.com"),
 ]
 
 
