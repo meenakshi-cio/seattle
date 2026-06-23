@@ -521,6 +521,7 @@ def git_push(new_count: int) -> None:
 
         msg = f"listings: {new_count} new listing(s)" if new_count else "listings: routine refresh"
         subprocess.run(["git", "commit", "-m", msg], cwd=REPO_ROOT, check=True)
+        subprocess.run(["git", "pull", "--rebase"], cwd=REPO_ROOT, check=True)
         subprocess.run(["git", "push"], cwd=REPO_ROOT, check=True)
         print("  [git] Pushed listings.json to GitHub.")
     except subprocess.CalledProcessError as e:
