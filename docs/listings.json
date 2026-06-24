@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-24T09:41:59.836698+00:00",
+  "updated": "2026-06-24T12:23:20.155241+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -106,8 +106,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997077,
-      "lng": -122.3466518
+      "lat": 47.6997057,
+      "lng": -122.3466536
     },
     {
       "source": "SJA Property Management",
@@ -118,8 +118,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6701863,
-      "lng": -122.3858619
+      "lat": 47.6701748,
+      "lng": -122.3748326
     },
     {
       "source": "SJA Property Management",
@@ -130,8 +130,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/a333a898-a3b5-4323-a329-94015f79c63d",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6567623,
-      "lng": -122.3235059
+      "lat": 47.6805395,
+      "lng": -122.3228662
     },
     {
       "source": "SJA Property Management",
@@ -142,8 +142,8 @@
       "pets": "none",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747106,
-      "lng": -122.3670507
+      "lat": 47.6747108,
+      "lng": -122.367099
     },
     {
       "source": "Avenue One Residential",
@@ -166,8 +166,8 @@
       "pets": "allowed",
       "url": "https://avenueone.appfolio.com/listings/detail/52ce02d7-6786-403b-821b-1308d1a00959",
       "first_seen": "2026-06-22T16:10:20.681015+00:00",
-      "lat": 47.6958977,
-      "lng": -122.3435186
+      "lat": 47.6958993,
+      "lng": -122.3435771
     },
     {
       "source": "Avenue One Residential",
@@ -226,8 +226,8 @@
       "pets": "allowed",
       "url": "https://gpsrenting.appfolio.com/listings/detail/d510f311-dd4b-48b3-b3b3-ff0169b2c9c8",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6531928,
-      "lng": -122.3408685
+      "lat": 47.6531166,
+      "lng": -122.3408726
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
