@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T18:37:39.640846+00:00",
+  "updated": "2026-06-25T19:08:52.157411+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -106,8 +106,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997057,
-      "lng": -122.3466536
+      "lat": 47.6997077,
+      "lng": -122.3466518
     },
     {
       "source": "SJA Property Management",
@@ -214,8 +214,8 @@
       "pets": "allowed",
       "url": "https://gpsrenting.appfolio.com/listings/detail/d510f311-dd4b-48b3-b3b3-ff0169b2c9c8",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6531928,
-      "lng": -122.3408685
+      "lat": 47.6531166,
+      "lng": -122.3408726
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
@@ -251,7 +251,7 @@
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/4ec8f126-4ff5-44f2-9a54-4648eddc9141",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
       "lat": 47.6511061,
-      "lng": -122.3451282
+      "lng": -122.3451247
     },
     {
       "source": "Dwellings Seattle",
@@ -498,7 +498,7 @@
       "beds": 2,
       "neighborhood": "Queen Anne",
       "address": "101 John St #304, Seattle, WA 98109",
-      "rent": "$3,195",
+      "rent": "$3,095",
       "pets": "allowed",
       "url": "https://pacificcrest.appfolio.com/listings/detail/94e50908-d0c6-4732-83aa-a08352055f2b",
       "first_seen": "2026-06-23T07:55:09.295298+00:00",
