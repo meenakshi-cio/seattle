@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T04:06:39.147563+00:00",
+  "updated": "2026-06-25T06:31:42.116425+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -118,8 +118,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704783,
-      "lng": -122.405115
+      "lat": 47.6701863,
+      "lng": -122.3858619
     },
     {
       "source": "SJA Property Management",
@@ -142,8 +142,8 @@
       "pets": "none",
       "url": "https://avenueone.appfolio.com/listings/detail/f0fb6eb5-2068-410c-afad-a01ab959d3a8",
       "first_seen": "2026-06-24T21:27:56.480745+00:00",
-      "lat": 47.6504595,
-      "lng": -122.3595887
+      "lat": 47.6504868,
+      "lng": -122.4171439
     },
     {
       "source": "Avenue One Residential",
