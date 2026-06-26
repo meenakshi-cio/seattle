@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26T18:15:59.961036+00:00",
+  "updated": "2026-06-26T18:56:14.376018+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -10,8 +10,8 @@
       "pets": "none",
       "url": "https://northpacificpm.appfolio.com/listings/detail/d454538e-ff81-4243-ba63-7863d411623e",
       "first_seen": "2026-06-26T04:13:45.340021+00:00",
-      "lat": 47.639514,
-      "lng": -122.369147
+      "lat": 47.639513,
+      "lng": -122.369149
     },
     {
       "source": "North Pacific Property Management",
@@ -130,8 +130,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997057,
-      "lng": -122.3466536
+      "lat": 47.6997077,
+      "lng": -122.3466518
     },
     {
       "source": "SJA Property Management",
