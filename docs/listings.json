@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26T04:13:45.340021+00:00",
+  "updated": "2026-06-26T06:34:24.527841+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -28,7 +28,7 @@
     {
       "source": "North Pacific Property Management",
       "beds": 3,
-      "neighborhood": "Phinney Ridge",
+      "neighborhood": "Fremont",
       "address": "3615 Phinney Ave N #C , Seattle, WA 98103",
       "rent": "$4,295",
       "pets": "allowed",
@@ -142,8 +142,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704334,
-      "lng": -122.40355
+      "lat": 47.6701748,
+      "lng": -122.3748326
     },
     {
       "source": "SJA Property Management",
@@ -154,8 +154,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747106,
-      "lng": -122.3670507
+      "lat": 47.6747108,
+      "lng": -122.367099
     },
     {
       "source": "Avenue One Residential",
@@ -166,8 +166,8 @@
       "pets": "none",
       "url": "https://avenueone.appfolio.com/listings/detail/f0fb6eb5-2068-410c-afad-a01ab959d3a8",
       "first_seen": "2026-06-24T21:27:56.480745+00:00",
-      "lat": 47.6504595,
-      "lng": -122.3595887
+      "lat": 47.6504868,
+      "lng": -122.4171439
     },
     {
       "source": "Avenue One Residential",
@@ -190,8 +190,8 @@
       "pets": "allowed",
       "url": "https://avenueone.appfolio.com/listings/detail/52ce02d7-6786-403b-821b-1308d1a00959",
       "first_seen": "2026-06-22T16:10:20.681015+00:00",
-      "lat": 47.6958993,
-      "lng": -122.3435771
+      "lat": 47.6959001,
+      "lng": -122.3434465
     },
     {
       "source": "Avenue One Residential",
@@ -238,8 +238,8 @@
       "pets": "allowed",
       "url": "https://rpa.appfolio.com/listings/detail/1899bdd4-3adf-40d8-8e6a-ea61b8b2cbc8",
       "first_seen": "2026-06-22T21:58:35.428462+00:00",
-      "lat": 47.6742767,
-      "lng": -122.3826648
+      "lat": 47.6742845,
+      "lng": -122.3826764
     },
     {
       "source": "Seattle Rental Group",
@@ -250,8 +250,8 @@
       "pets": "allowed",
       "url": "https://gpsrenting.appfolio.com/listings/detail/d510f311-dd4b-48b3-b3b3-ff0169b2c9c8",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6531166,
-      "lng": -122.3408726
+      "lat": 47.6531928,
+      "lng": -122.3408685
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
