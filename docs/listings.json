@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26T23:03:44.846270+00:00",
+  "updated": "2026-06-26T23:13:57.236960+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -142,8 +142,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6701748,
-      "lng": -122.3748326
+      "lat": 47.6704783,
+      "lng": -122.405115
     },
     {
       "source": "SJA Property Management",
@@ -154,8 +154,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747108,
-      "lng": -122.367099
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "Avenue One Residential",
@@ -250,8 +250,8 @@
       "pets": "allowed",
       "url": "https://rpa.appfolio.com/listings/detail/1899bdd4-3adf-40d8-8e6a-ea61b8b2cbc8",
       "first_seen": "2026-06-22T21:58:35.428462+00:00",
-      "lat": 47.6742845,
-      "lng": -122.3826764
+      "lat": 47.6742767,
+      "lng": -122.3826648
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
@@ -310,8 +310,8 @@
       "pets": "none",
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/4ec8f126-4ff5-44f2-9a54-4648eddc9141",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6511061,
-      "lng": -122.3451247
+      "lat": 47.6512028,
+      "lng": -122.3451345
     },
     {
       "source": "Dwellings Seattle",
