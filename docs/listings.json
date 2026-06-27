@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-27T17:43:56.180946+00:00",
+  "updated": "2026-06-27T18:09:38.258970+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -28,14 +28,14 @@
     {
       "source": "North Pacific Property Management",
       "beds": 3,
-      "neighborhood": "Fremont",
+      "neighborhood": "Phinney Ridge",
       "address": "3615 Phinney Ave N #C , Seattle, WA 98103",
       "rent": "$3,995",
       "pets": "allowed",
       "url": "https://northpacificpm.appfolio.com/listings/detail/dae53c78-3168-4832-99ac-4d6efe093dc2",
       "first_seen": "2026-06-25T23:03:19.503134+00:00",
-      "lat": 47.652745,
-      "lng": -122.354879
+      "lat": 47.6527933,
+      "lng": -122.3548744
     },
     {
       "source": "North Pacific Property Management",
@@ -130,8 +130,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997057,
-      "lng": -122.3466536
+      "lat": 47.6997077,
+      "lng": -122.3466518
     },
     {
       "source": "SJA Property Management",
@@ -154,8 +154,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747108,
-      "lng": -122.367099
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "Avenue One Residential",
@@ -310,8 +310,8 @@
       "pets": "none",
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/4ec8f126-4ff5-44f2-9a54-4648eddc9141",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6511061,
-      "lng": -122.3451247
+      "lat": 47.6512028,
+      "lng": -122.3451345
     },
     {
       "source": "Dwellings Seattle",
