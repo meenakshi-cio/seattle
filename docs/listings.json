@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-28T18:08:41.833184+00:00",
+  "updated": "2026-06-28T19:39:18.449319+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -130,8 +130,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997057,
-      "lng": -122.3466536
+      "lat": 47.6997077,
+      "lng": -122.3466518
     },
     {
       "source": "SJA Property Management",
@@ -142,8 +142,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704334,
-      "lng": -122.40355
+      "lat": 47.6701863,
+      "lng": -122.3858619
     },
     {
       "source": "SJA Property Management",
@@ -154,8 +154,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/f000947c-4dac-4e44-ae5e-2db0ce57cff7",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6747108,
-      "lng": -122.367099
+      "lat": 47.6747106,
+      "lng": -122.3670507
     },
     {
       "source": "Avenue One Residential",
@@ -178,8 +178,8 @@
       "pets": "none",
       "url": "https://avenueone.appfolio.com/listings/detail/f0fb6eb5-2068-410c-afad-a01ab959d3a8",
       "first_seen": "2026-06-24T21:27:56.480745+00:00",
-      "lat": 47.6504868,
-      "lng": -122.4171439
+      "lat": 47.6504595,
+      "lng": -122.3595887
     },
     {
       "source": "Avenue One Residential",
@@ -322,8 +322,8 @@
       "pets": "unknown",
       "url": "https://pacificcrest.appfolio.com/listings/detail/2ca54e7c-8d53-4bef-b345-1d2d15097207",
       "first_seen": "2026-06-28T04:22:16.767391+00:00",
-      "lat": 47.6333279,
-      "lng": -122.3420933
+      "lat": 47.6331303,
+      "lng": -122.3421047
     },
     {
       "source": "Pacific Crest Real Estate",
