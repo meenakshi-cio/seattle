@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-29T18:32:53.629580+00:00",
+  "updated": "2026-06-29T19:06:52.740652+00:00",
   "listings": [
     {
       "source": "North Pacific Property Management",
@@ -130,8 +130,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/31b89625-4b8d-4066-b060-646093ac14cb",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6997077,
-      "lng": -122.3466518
+      "lat": 47.6997057,
+      "lng": -122.3466536
     },
     {
       "source": "SJA Property Management",
@@ -142,8 +142,8 @@
       "pets": "allowed",
       "url": "https://sja.appfolio.com/listings/detail/562c4f0d-1049-4c79-b31f-1e5e4d300a0b",
       "first_seen": "2026-06-18T22:29:53.905307+00:00",
-      "lat": 47.6704334,
-      "lng": -122.40355
+      "lat": 47.6704783,
+      "lng": -122.405115
     },
     {
       "source": "SJA Property Management",
@@ -178,8 +178,8 @@
       "pets": "none",
       "url": "https://avenueone.appfolio.com/listings/detail/f0fb6eb5-2068-410c-afad-a01ab959d3a8",
       "first_seen": "2026-06-24T21:27:56.480745+00:00",
-      "lat": 47.6504868,
-      "lng": -122.4171439
+      "lat": 47.6503235,
+      "lng": -122.3776628
     },
     {
       "source": "Avenue One Residential",
@@ -202,8 +202,8 @@
       "pets": "allowed",
       "url": "https://avenueone.appfolio.com/listings/detail/52ce02d7-6786-403b-821b-1308d1a00959",
       "first_seen": "2026-06-22T16:10:20.681015+00:00",
-      "lat": 47.6958977,
-      "lng": -122.3435186
+      "lat": 47.6959001,
+      "lng": -122.3434465
     },
     {
       "source": "Avenue One Residential",
@@ -250,8 +250,8 @@
       "pets": "allowed",
       "url": "https://rpa.appfolio.com/listings/detail/1899bdd4-3adf-40d8-8e6a-ea61b8b2cbc8",
       "first_seen": "2026-06-22T21:58:35.428462+00:00",
-      "lat": 47.6742845,
-      "lng": -122.3826764
+      "lat": 47.6742767,
+      "lng": -122.3826648
     },
     {
       "source": "Lori Gill & Associates (Windermere)",
@@ -298,8 +298,8 @@
       "pets": "none",
       "url": "https://wpmnorthwest.appfolio.com/listings/detail/4ec8f126-4ff5-44f2-9a54-4648eddc9141",
       "first_seen": "2026-06-19T17:50:56.902044+00:00",
-      "lat": 47.6512028,
-      "lng": -122.3451345
+      "lat": 47.6511061,
+      "lng": -122.3451282
     },
     {
       "source": "Dwellings Seattle",
@@ -322,8 +322,8 @@
       "pets": "allowed",
       "url": "https://pacificcrest.appfolio.com/listings/detail/fae02597-d6c1-45db-a5be-306b7b1a352a",
       "first_seen": "2026-06-29T18:17:42.579287+00:00",
-      "lat": 47.6468388,
-      "lng": -122.3982615
+      "lat": 47.646852,
+      "lng": -122.4055649
     },
     {
       "source": "Pacific Crest Real Estate",
